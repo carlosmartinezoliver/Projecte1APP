@@ -15,7 +15,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $ionicConfigProvider.tabs.position('bottom');
   $ionicConfigProvider.tabs.style("standard");
-  
+  $ionicConfigProvider.navBar.alignTitle("center");
+
   $urlRouterProvider.otherwise('/tabs/gallery');
 
   $stateProvider.state('tabs', {
