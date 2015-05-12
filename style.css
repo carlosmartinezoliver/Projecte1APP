@@ -300,3 +300,23 @@ h11 {
     letter-spacing: -0.5px;
     font-size: 17px;
 }
+
+/* Login */
+
+#login-input {
+  padding: 10px;
+  width: calc(100% - 25px);
+  margin: auto;
+  /*border: 1px solid #b73e2a;*/
+  border: none;
+  margin-bottom: 20px;
+  font-size: 17px;
+  background-color: #d8d8d8;
+  border-radius: 10px;
+}
+
+#logo {
+    margin: auto;
+    display: block;
+    padding: 40px;
+}
