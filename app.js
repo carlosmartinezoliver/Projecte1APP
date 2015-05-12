@@ -71,7 +71,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 // CONTROLADORES
 
 app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet){
-    $scope.title = "Gallery";
+    $scope.title = "Galeria";
 
     getPosts();
 
