@@ -251,22 +251,6 @@ h10 {
 
 /* New Post */
 
-.images-new {
-    width: 100px;
-    height: 100px;
-    background-color: grey;
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
-    -moz-column-gap: 1em;
-    -webkit-column-gap: 1em;
-    column-gap: 1em;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 35px;
-    margin-bottom: 35px;
-}
-
 div.container4 {
 
     width: calc(100% - 25px);
@@ -282,15 +266,31 @@ div.container4 table {
 
 }
 
-textarea {
-  padding: 10px 0;
+#title {
+  resize: none;
+  padding: 10px 3px;
   width: calc(100% - 25px);
   margin: auto;
   border: none;
-  border-bottom: solid 1px #d8d8d8;
   margin-bottom: 15px;
+  border-bottom: solid 1px #d8d8d8;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  font-size: 17px;
+}
+
+#description {
+  resize: none;
+  padding: 10px 3px;
+  width: calc(100% - 25px);
+  margin: auto;
+  border: none;
+  margin-bottom: 15px;
+  border-bottom: solid 1px #d8d8d8;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 100px;
+  font-size: 17px;
 }
 
 h11 {
@@ -298,5 +298,5 @@ h11 {
     font-weight: bold;
     margin-left: 15px;
     letter-spacing: -0.5px;
-    font-size: 13px;
+    font-size: 17px;
 }

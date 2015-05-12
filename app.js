@@ -306,11 +306,7 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
     $scope.bricks = [
         genBrick(0),
         genBrick(1),
-        genBrick(2),
-        genBrick(3),
-        genBrick(4),
-        genBrick(5),
-        genBrick(6)
+        genBrick(2)
 
         ];
 
