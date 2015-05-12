@@ -1,0 +1,37 @@
+<div class="modal" align-title="center">
+
+    <ion-header-bar class="bar bar-assertive">
+        <div class="buttons">
+            <button class="button button-clear icon ion-close-round header-button" ng-click="closeModal()"></button>
+        </div>
+        <h1 class="title">Nuevo</h1>
+        <div class="buttons">
+            <button class="button button-clear icon ion-checkmark-round header-button" ng-click="newPost()"></button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <div class="container4">
+        <table>
+            <tr>
+                <td style="vertical-align:top"><a ng-click="openOptions()"><div style="height:0;"><img src="img/photo.png" alt="" height="220" max-width="100%"></div></a></td>
+                <td><a ng-click="openOptions()"><img src="img/photo.png" style="margin-left: 4px;" height="70" width="70"/></a></td>
+            </tr>
+            <tr>
+                <td><!--empty--></td>
+                <td><a ng-click="openOptions()"><img src="img/photo.png" style="margin-left: 4px;" height="70" width="70"/></a></td>
+            </tr>
+            <tr>
+                <td><!--empty--></td>
+                <td><a ng-click="openOptions()"><img src="img/photo.png" style="margin-left: 4px;" height="70" width="70"/></a></td>
+            </tr>
+        </table>
+        </div>
+        <h11>Titulo</h11>
+        <textarea placeholder="Introducir el titulo" type="text"></textarea>
+        <h11>Descripcion</h11>
+        <textarea placeholder="Introducir la descripcion" type="text"></textarea>
+    </ion-content>
+
+</div>

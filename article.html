@@ -1,0 +1,30 @@
+<ion-view title="{{Gallery}}">
+    <ion-header-bar class="bar bar-assertive">
+        <div class="buttons">
+            <button class="button button-clear icon ion-edit header-button"></button>
+        </div>
+        <div class="buttons">
+            <button class="button button-clear icon ion-close-round header-button" ng-click="closeModal()"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list card">
+
+            <div class="item item-image">
+                <img class="card-image" ng-src="{{ bricks.src }}" />
+            </div>
+
+            <div class="modal-content">
+              <h10 class="modal-h10">Avui marató de piscina!</h10>
+              <p class="modal-card-text">Call me Ishmael.  Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.  It is a way I have of driving off the spleen, and regulating the circulation.  Whenever I find myself growing grim about the mouth; whenever it is a damp,<br /><br /> drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can.</p>
+            </div>
+
+            <div class="masonry-article">
+                <div ng-repeat="brick in bricks">
+                    <img class="item-masonry-article" ng-src="{{ brick.src }}" ng-click="openModal({{ brick.index }})" />
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>
