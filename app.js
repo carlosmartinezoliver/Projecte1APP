@@ -67,11 +67,30 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     })
 
 });
+/* FACTORY */
+.factory('Camera', ['$q', function($q) {
 
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}])
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet){
+app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet,Camera){
     $scope.title = "Galeria";
+
+    $scope.id;
 
     getPosts();
 
@@ -94,6 +113,22 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     	  })
     };
 
+    function createPost(){
+       var url = "http://localhost/slimrest/posts/create";
+
+        $http.get(url, {
+            	    headers: {
+            	      'Content-type': 'application/json'
+            	    }
+         }).
+         success(function(data.id) {
+            $scope.id=data.id
+         }).
+         error(function(data_todo) {
+            console.log("error");
+          })
+    }
+
     $ionicModal.fromTemplateUrl('new-post.html', {
           scope: $scope,
           animation: 'slide-in-up'
@@ -102,6 +137,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
 
         $scope.openModal = function() {
+            createPost();
           $scope.modal.show();
         };
 
@@ -134,11 +170,54 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  titleText: 'Nueva fotografia',
                  cancelText: 'Cancelar',
                  buttonClicked: function(index) {
+                    if(index === 0){
+                        Camera.getPicture({
+                              quality: 75,
+                              targetWidth: 320,
+                              targetHeight: 320,
+                              saveToPhotoAlbum: false
+                            }).then(function(imageURI) {
+                              console.log(imageURI);
+                              $scope.lastPhoto = imageURI;
+                            }, function(err) {
+                              console.err(err);
+                            });
+                    } else {
+                        getByGallery();
+                    }
                    return true;
                  }
                });
             }
-  
+    function getByGallery(){
+        navigator.camera.getPicture(onPhotoURISuccess, function(ex) {
+                    alert("Camera Error!"); },
+                    { quality: 30,
+                destinationType: destinationType.FILE_URI,
+                // Android Quirk: Camera.PictureSourceType.PHOTOLIBRARY and
+                // Camera.PictureSourceType.SAVEDPHOTOALBUM display the same photo album.
+                sourceType: pictureSource.SAVEDPHOTOALBUM });
+    }
+    function getByCamera(){
+        navigator.camera.getPicture(onPhotoDataSuccess, function(ex) {
+                alert("Camera Error!");
+            }, { quality : 30, destinationType: destinationType.DATA_URL });
+    }
+    function onPhotoDataSuccess(imageData) {
+        console.log("* * * onPhotoDataSuccess");
+        var cameraImage = document.getElementById('cameraImage');
+        cameraImage.style.visibility = 'visible';
+        cameraImage.src = "data:image/jpeg;base64," + imageData;
+    }
+
+    function onPhotoURISuccess(imageURI) {
+        console.log("* * * onPhotoURISuccess");
+        // Uncomment to view the image file URI
+        // console.log(imageURI);
+        var cameraImage = document.getElementById('cameraImage');
+        cameraImage.style.visibility = 'visible';
+        cameraImage.src = imageURI;
+    }
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout) {
@@ -178,6 +257,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         });
 
     };
+
 
     function getAllImages(){
     	  var url = "http://localhost/slimrest/images/" + $scope.index;
