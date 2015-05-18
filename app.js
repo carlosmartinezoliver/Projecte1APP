@@ -68,7 +68,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
 });
 /* FACTORY */
-.factory('Camera', ['$q', function($q) {
+app.factory('Camera', ['$q', function($q) {
 
   return {
     getPicture: function(options) {
@@ -121,12 +121,12 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
             	      'Content-type': 'application/json'
             	    }
          }).
-         success(function(data.id) {
+         success(function(data) {
             $scope.id=data.id
          }).
          error(function(data_todo) {
             console.log("error");
-          })
+          });
     }
 
     $ionicModal.fromTemplateUrl('new-post.html', {
