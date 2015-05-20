@@ -177,7 +177,9 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         destinationType: navigator.camera.DestinationType.DATA_URL,
         encodingType: navigator.camera.EncodingType.JPEG,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
+        targetWidth: 100,
+        targetHeight: 100
 
         });
 
@@ -197,7 +199,9 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
             destinationType: navigator.camera.DestinationType.DATA_URL,
             encodingType: navigator.camera.EncodingType.JPEG,
-            sourceType: navigator.camera.PictureSourceType.CAMERA
+            sourceType: navigator.camera.PictureSourceType.CAMERA,
+            targetWidth: 100,
+            targetHeight: 100
 
             });
 
