@@ -89,25 +89,11 @@ app.factory('Camera', ['$q', function($q) {
 app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
     $scope.title = "Galeria";
 
-    $scope.selImage = function() {
-
-        		var options = {
-        			quality: 50,
-        			destinationType: Camera.DestinationType.FILE_URI,
-        			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        			targetWidth: 200,
-        			targetHeight: 200
-        		};
-
-        		$Camera.getPicture(options).then(function(imageUri) {
-        			console.log('img', imageUri);
-        			$scope.images.push(imageUri);
-
-        		}, function(err) {
-        		// error
-        		});
-
-        	};
+    function getImage() {
+                        navigator.camera.getPicture(onSuccess, onFailure, {
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+               });
 
     getPosts();
 
@@ -180,7 +166,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 		 	}
 		       	else if(index === 1){
 				alert('Galeria');
-				$scope.selImage();
+				getImage();
 		       }
                    return true;
                  }
