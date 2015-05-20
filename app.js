@@ -181,7 +181,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         });
 
         function onSuccess(imageData) {
-            alert('OK!');
+            alert('OK! ' + imageData);
         }
 
         function onFail(message) {
@@ -199,7 +199,8 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
             });
 
             function onSuccess(imageData) {
-                alert('OK!');
+                alert('OK! ' + imageData);
+
             }
 
             function onFail(message) {
