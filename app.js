@@ -185,7 +185,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         function onSuccess(imageData) {
             alert('OK! ' + imageData);
-            $scope.image = $base64.decode(imageData);
+            $scope.image = $base64.encode(imageData);
         }
 
         function onFail(message) {
@@ -207,7 +207,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
             function onSuccess(imageData) {
                 alert('OK! ' + imageData);
-                $scope.image = $base64.decode(imageData);
+                $scope.image = $base64.encode(imageData);
 
             }
 
