@@ -175,6 +175,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
+        quality: 50,
         destinationType: navigator.camera.DestinationType.DATA_URL,
         encodingType: navigator.camera.EncodingType.JPEG,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
@@ -184,7 +185,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         });
 
         function onSuccess(imageData) {
-            alert('OK! ' + imageData);
+            alert('OK! = ' + quality + ' /// ' + imageData);
             $scope.image = imageData;
         }
 
@@ -195,26 +196,26 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
     function getImageCam() {
 
-            navigator.camera.getPicture(onSuccess, onFail, {
+        navigator.camera.getPicture(onSuccess, onFail, {
 
-            destinationType: navigator.camera.DestinationType.DATA_URL,
-            encodingType: navigator.camera.EncodingType.JPEG,
-            sourceType: navigator.camera.PictureSourceType.CAMERA,
-            targetWidth: 100,
-            targetHeight: 100
+        quality: 50,
+        destinationType: navigator.camera.DestinationType.DATA_URL,
+        encodingType: navigator.camera.EncodingType.JPEG,
+        sourceType: navigator.camera.PictureSourceType.CAMERA,
+        targetWidth: 100,
+        targetHeight: 100
 
-            });
+        });
 
-            function onSuccess(imageData) {
-                alert('OK! ' + imageData);
-                $scope.image = imageData;
+        function onSuccess(imageData) {
+            alert('OK! = ' + quality + ' /// ' + imageData);
+            $scope.image = imageData;
+        }
 
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-            }
-        };
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+    };
 
     // Insert new image from camera or gallery //
 
