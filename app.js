@@ -176,12 +176,14 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         navigator.camera.getPicture(onSuccess, onFail, {
 
         destinationType: navigator.camera.DestinationType.DATA_URL,
+        encodingType: navigator.camera.EncodingType.JPEG,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 
         });
 
         function onSuccess(imageData) {
             alert('OK! ' + imageData);
+            $scope.image = imageData;
         }
 
         function onFail(message) {
@@ -194,13 +196,14 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
             navigator.camera.getPicture(onSuccess, onFail, {
 
             destinationType: navigator.camera.DestinationType.DATA_URL,
+            encodingType: navigator.camera.EncodingType.JPEG,
             sourceType: navigator.camera.PictureSourceType.CAMERA
 
             });
 
             function onSuccess(imageData) {
                 alert('OK! ' + imageData);
-                $scope.imageData = imageData;
+                $scope.image = imageData;
 
             }
 
