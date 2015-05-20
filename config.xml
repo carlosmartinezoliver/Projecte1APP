@@ -77,6 +77,8 @@
 	<feature name="http://api.phonegap.com/1.0/device" />
 	<feature name="http://api.phonegap.com/1.0/media"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
+
+    <access origin="http://today.globals.cat/"/>
 	
 	<!--
 	<gap:config-file target="AndroidManifest.xml" parent="/manifest/application">

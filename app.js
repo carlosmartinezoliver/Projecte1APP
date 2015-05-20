@@ -86,7 +86,7 @@ app.factory('Camera', ['$q', function($q) {
 }]);
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet,Camera){
+app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
     $scope.title = "Galeria";
 
     getPosts();
@@ -151,12 +151,12 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  cancelText: 'Cancelar',
                  buttonClicked: function(index) {
 			if(index === 0){ // Manual Button
-				alert('Camara'+$img);
+				alert('Camara ' + $img);
 			 Camera.getPicture().then(function(imageURI) {
-      console.log(imageURI);
-    }, function(err) {
-      console.err(err);
-    });
+              console.log(imageURI);
+            }, function(err) {
+              console.err(err);
+            });
 		 	}
 		       	else if(index === 1){
 				alert('Galeria');
@@ -168,8 +168,28 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
   
 });
 
-app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout) {
+app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
+
+    $scope.selImage = function() {
+
+    		var options = {
+    			quality: 50,
+    			destinationType: Camera.DestinationType.FILE_URI,
+    			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    			targetWidth: 200,
+    			targetHeight: 200
+    		};
+
+    		$cordovaCamera.getPicture(options).then(function(imageUri) {
+    			console.log('img', imageUri);
+    			$scope.images.push(imageUri);
+
+    		}, function(err) {
+    		// error
+    		});
+
+    	};
 
     // Insert new image from camera or gallery //
 
@@ -182,15 +202,16 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
          titleText: 'Nueva fotografia',
          cancelText: 'Cancelar',
          buttonClicked: function(index) {
-		if(index === 0){ // Manual Button
-		 alert('Camara');
-	       }
-	       else if(index === 1){
-		alert('Galeria');
-	       }
-	       return true;
-         }
-       });
+            if(index === 0){ // Manual Button
+             alert('Camara');
+               }
+               else if(index === 1){
+                alert('Galeria');
+                selImage();
+               }
+               return true;
+             }
+           });
     }
 
     function getID() {
