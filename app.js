@@ -181,7 +181,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
     			targetHeight: 200
     		};
 
-    		$cordovaCamera.getPicture(options).then(function(imageUri) {
+    		$Camera.getPicture(options).then(function(imageUri) {
     			console.log('img', imageUri);
     			$scope.images.push(imageUri);
 
