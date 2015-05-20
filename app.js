@@ -175,9 +175,9 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-        destinationType: navigator.camera.DestinationType.DATA_URL,
-        encodingType: navigator.camera.EncodingType.JPEG,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+            destinationType: navigator.camera.DestinationType.DATA_URL,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 
         });
 
@@ -186,7 +186,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
             $timeout(function(){
                 $scope.image = imageData;
                 // TODO: CREAR MENSAJE CARGA //
-            }, 800);
+            }, 1000);
         }
 
         function onFail(message) {
@@ -198,20 +198,16 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            encodingType: Camera.EncodingType.JPEG,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            saveToPhotoAlbum: true
+            destinationType: navigator.camera.DestinationType.DATA_URL,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            sourceType: navigator.camera.PictureSourceType.CAMERA
 
         });
 
         function onSuccess(imageData) {
             alert('OK! ' + imageData);
-            $timeout(function(){
-                $scope.image = imageData;
-                // TODO: CREAR MENSAJE CARGA //
-            }, 800);
+            var image = document.getElementById('myImage');
+            image.src = "data:image/jpeg;base64," + imageData;
         }
 
         function onFail(message) {
@@ -243,7 +239,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         });
     }
 
-    function getID() {
+    /*function getID() {
 
         var url = "http://localhost/slimrest/id/lastImg";
 
@@ -291,7 +287,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
                 getAllImages();
                 // TODO: CREAR MENSAJE CARGA //
             }, 1000);
-
+    */
     /*function genBrick(i) {
         var height = ~~(Math.random() * 500) + 100;
         var id = ~~(Math.random() * 10000);
