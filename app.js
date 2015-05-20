@@ -10,8 +10,7 @@ var app = angular.module('navApp', ['ionic', 'swipe', 'wu.masonry', 'ab-base64',
 })*/
 
 // RUTAS
-
-app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,$compileProvider) {
 
   $ionicConfigProvider.tabs.position('bottom');
   $ionicConfigProvider.tabs.style("standard");
@@ -65,9 +64,9 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       }
 
     })
-
+	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
-/* FACTORY */
+
 app.factory('Camera', ['$q', function($q) {
 
   return {
@@ -84,13 +83,11 @@ app.factory('Camera', ['$q', function($q) {
       return q.promise;
     }
   }
-}])
+}]);
 // CONTROLADORES
 
 app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet,Camera){
     $scope.title = "Galeria";
-
-    $scope.id;
 
     getPosts();
 
@@ -113,22 +110,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     	  })
     };
 
-    function createPost(){
-       var url = "http://localhost/slimrest/posts/create";
-
-        $http.get(url, {
-            	    headers: {
-            	      'Content-type': 'application/json'
-            	    }
-         }).
-         success(function(data) {
-            $scope.id=data.id
-         }).
-         error(function(data_todo) {
-            console.log("error");
-          });
-    }
-
     $ionicModal.fromTemplateUrl('new-post.html', {
           scope: $scope,
           animation: 'slide-in-up'
@@ -137,7 +118,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
 
         $scope.openModal = function() {
-            createPost();
           $scope.modal.show();
         };
 
@@ -161,8 +141,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
           console.log('Modal is shown!');
         });
 
-        $scope.openOptions = function() {
-                $ionicActionSheet.show({
+        $scope.openOptions = function($img) {
+             $ionicActionSheet.show({
                  buttons: [
                    { text: 'Camara' },
                    { text: 'Imagen desde galeria' }
@@ -170,54 +150,22 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  titleText: 'Nueva fotografia',
                  cancelText: 'Cancelar',
                  buttonClicked: function(index) {
-                    if(index === 0){
-                        Camera.getPicture({
-                              quality: 75,
-                              targetWidth: 320,
-                              targetHeight: 320,
-                              saveToPhotoAlbum: false
-                            }).then(function(imageURI) {
-                              console.log(imageURI);
-                              $scope.lastPhoto = imageURI;
-                            }, function(err) {
-                              console.err(err);
-                            });
-                    } else {
-                        getByGallery();
-                    }
+			if(index === 0){ // Manual Button
+				alert('Camara'+$img);
+			 Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+    }, function(err) {
+      console.err(err);
+    });
+		 	}
+		       	else if(index === 1){
+				alert('Galeria');
+		       }
                    return true;
                  }
                });
             }
-    function getByGallery(){
-        navigator.camera.getPicture(onPhotoURISuccess, function(ex) {
-                    alert("Camera Error!"); },
-                    { quality: 30,
-                destinationType: destinationType.FILE_URI,
-                // Android Quirk: Camera.PictureSourceType.PHOTOLIBRARY and
-                // Camera.PictureSourceType.SAVEDPHOTOALBUM display the same photo album.
-                sourceType: pictureSource.SAVEDPHOTOALBUM });
-    }
-    function getByCamera(){
-        navigator.camera.getPicture(onPhotoDataSuccess, function(ex) {
-                alert("Camera Error!");
-            }, { quality : 30, destinationType: destinationType.DATA_URL });
-    }
-    function onPhotoDataSuccess(imageData) {
-        console.log("* * * onPhotoDataSuccess");
-        var cameraImage = document.getElementById('cameraImage');
-        cameraImage.style.visibility = 'visible';
-        cameraImage.src = "data:image/jpeg;base64," + imageData;
-    }
-
-    function onPhotoURISuccess(imageURI) {
-        console.log("* * * onPhotoURISuccess");
-        // Uncomment to view the image file URI
-        // console.log(imageURI);
-        var cameraImage = document.getElementById('cameraImage');
-        cameraImage.style.visibility = 'visible';
-        cameraImage.src = imageURI;
-    }
+  
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout) {
@@ -234,7 +182,13 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
          titleText: 'Nueva fotografia',
          cancelText: 'Cancelar',
          buttonClicked: function(index) {
-           return true;
+		if(index === 0){ // Manual Button
+		 alert('Camara');
+	       }
+	       else if(index === 1){
+		alert('Galeria');
+	       }
+	       return true;
          }
        });
     }
@@ -257,7 +211,6 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         });
 
     };
-
 
     function getAllImages(){
     	  var url = "http://localhost/slimrest/images/" + $scope.index;
