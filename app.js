@@ -198,14 +198,15 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-        destinationType: navigator.camera.DestinationType.DATA_URL,
-        encodingType: navigator.camera.EncodingType.JPEG,
-        sourceType: navigator.camera.PictureSourceType.CAMERA,
-        saveToPhotoAlbum: navigator.camera.SaveToPhotoAlbum = true
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            encodingType: Camera.EncodingType.JPEG,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            saveToPhotoAlbum: true
 
         });
 
-        function onSuccess(imageData, quality) {
+        function onSuccess(imageData) {
             alert('OK! ' + imageData);
             $timeout(function(){
                 $scope.image = imageData;
