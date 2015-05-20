@@ -168,10 +168,10 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
   
 });
 
-app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera, $base64) {
+app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
 
-    function getImage($base64) {
+    function getImage() {
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
@@ -185,7 +185,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         function onSuccess(imageData) {
             alert('OK! ' + imageData);
-            $scope.image = $base64.encode(imageData);
+            $scope.image = imageData;
         }
 
         function onFail(message) {
@@ -193,7 +193,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         }
     };
 
-    function getImageCam($base64) {
+    function getImageCam() {
 
             navigator.camera.getPicture(onSuccess, onFail, {
 
@@ -207,7 +207,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
             function onSuccess(imageData) {
                 alert('OK! ' + imageData);
-                $scope.image = $base64.encode(imageData);
+                $scope.image = imageData;
 
             }
 
