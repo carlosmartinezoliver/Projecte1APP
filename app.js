@@ -175,18 +175,18 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-        quality: 50,
         destinationType: navigator.camera.DestinationType.DATA_URL,
         encodingType: navigator.camera.EncodingType.JPEG,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
-        targetWidth: 100,
-        targetHeight: 100
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 
         });
 
         function onSuccess(imageData, quality) {
-            alert('OK! = ' + quality + ' /// ' + imageData);
-            $scope.image = imageData;
+            alert('OK! ' + imageData);
+            $timeout(function(){
+                $scope.image = imageData;
+                // TODO: CREAR MENSAJE CARGA //
+            }, 800);
         }
 
         function onFail(message) {
@@ -198,19 +198,19 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-        quality: 50,
         destinationType: navigator.camera.DestinationType.DATA_URL,
         encodingType: navigator.camera.EncodingType.JPEG,
         sourceType: navigator.camera.PictureSourceType.CAMERA,
-        targetWidth: 100,
-        targetHeight: 100,
-        saveToPhotoAlbum: true
+        saveToPhotoAlbum: navigator.camera.SaveToPhotoAlbum = true
 
         });
 
         function onSuccess(imageData, quality) {
-            alert('OK! = ' + quality + ' /// ' + imageData);
-            $scope.image = imageData;
+            alert('OK! ' + imageData);
+            $timeout(function(){
+                $scope.image = imageData;
+                // TODO: CREAR MENSAJE CARGA //
+            }, 800);
         }
 
         function onFail(message) {
