@@ -200,6 +200,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
             function onSuccess(imageData) {
                 alert('OK! ' + imageData);
+                $scope.imageData = imageData;
 
             }
 
