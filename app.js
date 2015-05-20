@@ -152,11 +152,11 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  buttonClicked: function(index) {
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
-			 Camera.getPicture().then(function(imageURI) {
-              console.log(imageURI);
-            }, function(err) {
-              console.err(err);
-            });
+                Camera.getPicture().then(function(imageURI) {
+                  console.log(imageURI);
+                }, function(err) {
+                  console.err(err);
+                });
 		 	}
 		       	else if(index === 1){
 				alert('Galeria');
@@ -189,6 +189,24 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         }
     };
 
+    function getImageCam() {
+
+            navigator.camera.getPicture(onSuccess, onFail, {
+
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.CAMERA
+
+            });
+
+            function onSuccess(imageData) {
+                alert('OK!');
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+        };
+
     // Insert new image from camera or gallery //
 
     $scope.openOptions = function() {
@@ -201,11 +219,12 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
          cancelText: 'Cancelar',
          buttonClicked: function(index) {
             if(index === 0){ // Manual Button
-             alert('Camara');
-               }
+                alert('Camara');
+                getImageCam();
+            }
             else if(index === 1){
-             alert('Galeria');
-             getImage();
+                alert('Galeria');
+                getImage();
             }
            return true;
          }
