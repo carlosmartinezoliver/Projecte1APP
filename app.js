@@ -207,7 +207,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         function onSuccess(imageData) {
             alert('OK! ' + imageData);
             var image = document.getElementById('myImage');
-            image.src = "data:image/jpeg;base64," + imageData;
+            $scope.image.src = "data:image/jpeg;base64," + imageData;
         }
 
         function onFail(message) {
