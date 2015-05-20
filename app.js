@@ -89,6 +89,26 @@ app.factory('Camera', ['$q', function($q) {
 app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
     $scope.title = "Galeria";
 
+    $scope.selImage = function() {
+
+        		var options = {
+        			quality: 50,
+        			destinationType: Camera.DestinationType.FILE_URI,
+        			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        			targetWidth: 200,
+        			targetHeight: 200
+        		};
+
+        		$Camera.getPicture(options).then(function(imageUri) {
+        			console.log('img', imageUri);
+        			$scope.images.push(imageUri);
+
+        		}, function(err) {
+        		// error
+        		});
+
+        	};
+
     getPosts();
 
     function getPosts(){
@@ -160,6 +180,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 		 	}
 		       	else if(index === 1){
 				alert('Galeria');
+				$scope.selImage();
 		       }
                    return true;
                  }
@@ -170,26 +191,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
-
-    $scope.selImage = function() {
-
-    		var options = {
-    			quality: 50,
-    			destinationType: Camera.DestinationType.FILE_URI,
-    			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    			targetWidth: 200,
-    			targetHeight: 200
-    		};
-
-    		$Camera.getPicture(options).then(function(imageUri) {
-    			console.log('img', imageUri);
-    			$scope.images.push(imageUri);
-
-    		}, function(err) {
-    		// error
-    		});
-
-    	};
 
     // Insert new image from camera or gallery //
 
@@ -207,7 +208,6 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
                }
                else if(index === 1){
                 alert('Galeria');
-                selImage();
                }
                return true;
              }
