@@ -10,7 +10,7 @@
 
     <div class="masonry">
       <!--<div ng-repeat="brick in bricks">-->
-      <img class="item-masonry"  ng-src="{{ image.src }}" ng-click="openModal()" />
+      <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ image }}" ng-click="openModal()" />
       <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
       <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
       <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
@@ -21,7 +21,5 @@
       Cargar mas fotografias
     </button>
 
-
-    
   </ion-content>
 </ion-view>

@@ -206,7 +206,10 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         function onSuccess(imageData) {
             alert('OK! ' + imageData);
-            $scope.image = "data:image/jpeg;base64," + imageData;
+            $timeout(function(){
+                $scope.image = imageData;
+                // TODO: CREAR MENSAJE CARGA //
+            }, 1000);
         }
 
         function onFail(message) {
