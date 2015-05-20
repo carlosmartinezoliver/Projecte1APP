@@ -175,7 +175,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-        destinationType: navigator.camera.DestinationType.FILE_URI,
+        destinationType: navigator.camera.DestinationType.DATA_URL,
         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 
         });
@@ -193,7 +193,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
             navigator.camera.getPicture(onSuccess, onFail, {
 
-            destinationType: navigator.camera.DestinationType.FILE_URI,
+            destinationType: navigator.camera.DestinationType.DATA_URL,
             sourceType: navigator.camera.PictureSourceType.CAMERA
 
             });
