@@ -89,13 +89,6 @@ app.factory('Camera', ['$q', function($q) {
 app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
     $scope.title = "Galeria";
 
-    function getImage() {
-                        navigator.camera.getPicture(onSuccess, onFailure, {
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-               });
-    };
-
     getPosts();
 
     function getPosts(){
@@ -167,7 +160,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 		 	}
 		       	else if(index === 1){
 				alert('Galeria');
-				getImage();
 		       }
                    return true;
                  }
@@ -178,6 +170,24 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
+
+    function getImage() {
+
+        navigator.camera.getPicture(onSuccess, onFail, {
+
+        destinationType: navigator.camera.DestinationType.FILE_URI,
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+
+        });
+
+        function onSuccess(imageData) {
+            alert('OK!');
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+    };
 
     // Insert new image from camera or gallery //
 
@@ -193,12 +203,13 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
             if(index === 0){ // Manual Button
              alert('Camara');
                }
-               else if(index === 1){
-                alert('Galeria');
-               }
-               return true;
-             }
-           });
+            else if(index === 1){
+             alert('Galeria');
+             getImage();
+            }
+           return true;
+         }
+        });
     }
 
     function getID() {
