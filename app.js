@@ -203,7 +203,8 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         encodingType: navigator.camera.EncodingType.JPEG,
         sourceType: navigator.camera.PictureSourceType.CAMERA,
         targetWidth: 100,
-        targetHeight: 100
+        targetHeight: 100,
+        saveToPhotoAlbum: true
 
         });
 
