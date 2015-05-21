@@ -153,7 +153,16 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture().then(function(imageURI) {
-                  console.log(imageURI);
+                    if($img === 'principal'){
+                        $scope.imagePrinc = imageURI;
+                    } else if($img === 'img1'){
+                        $scope.image1 = imageURI;
+                    } else if($img === 'img2'){
+                        $scope.image2 = imageURI;
+                    } else if($img === 'img3'){
+                        $scope.image3 = imageURI;
+                    }
+                    console.log(imageURI);
                 }, function(err) {
                   console.err(err);
                 });
