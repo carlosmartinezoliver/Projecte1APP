@@ -200,7 +200,8 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
             destinationType: navigator.camera.DestinationType.FILE_URI,
             encodingType: navigator.camera.EncodingType.JPEG,
-            sourceType: navigator.camera.PictureSourceType.CAMERA
+            sourceType: navigator.camera.PictureSourceType.CAMERA,
+            correctOrientation: true
 
         });
 
