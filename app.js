@@ -152,7 +152,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  buttonClicked: function(index) {
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
-                Camera.getPicture().then(function(imageURI) {
+                Camera.getPicture(correctOrientation: true).then(function(imageURI) {
                     if($img === 'principal'){
                         $scope.imagePrinc = imageURI;
                     } else if($img === 'img1'){
