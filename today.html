@@ -9,13 +9,13 @@
   <ion-content has-bouncing="true">
 
     <div class="masonry">
-      <!--<div ng-repeat="brick in bricks">-->
-      <img class="item-masonry"  ng-src="{{ image }}" ng-click="openModal()" />
+      <div ng-repeat="image in images">
+        <img class="item-masonry"  ng-src="{{ image }}" ng-click="openModal()" />
+      <!--<img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
       <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
       <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
-      <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
-      <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />
-      <!--</div>-->
+      <img class="item-masonry"  ng-src="data:image/jpeg;base64,{{ allImg }}" ng-click="openModal()" />-->
+      </div>
     </div>
     <button class="button button-clear button-full button-assertive" style="margin-top: -5px;">
       Cargar mas fotografias
