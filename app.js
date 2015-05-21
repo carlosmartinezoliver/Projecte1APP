@@ -181,7 +181,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         });
 
-        function onSuccess(imageData, quality) {
+        function onSuccess(imageData) {
             alert('OK! ' + imageData);
             $timeout(function(){
                 $scope.image = imageData;
@@ -198,16 +198,16 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
         navigator.camera.getPicture(onSuccess, onFail, {
 
-            destinationType: navigator.camera.DestinationType.DATA_URL,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
             encodingType: navigator.camera.EncodingType.JPEG,
             sourceType: navigator.camera.PictureSourceType.CAMERA
 
         });
 
-        function onSuccess(imageData) {
-            alert('OK! ' + imageData);
+        function onSuccess(imageURI) {
+            alert('OK! ' + imageURI);
             $timeout(function(){
-                $scope.image = imageData;
+                $scope.image = imageURI;
                 // TODO: CREAR MENSAJE CARGA //
             }, 1000);
         }
