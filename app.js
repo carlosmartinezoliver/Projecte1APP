@@ -140,8 +140,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
            success(function(data, status, headers, config) {
                                       // this callback will be called asynchronously
                                       // when the response is available
-                                      alert('be');
+
               $scope.postId = data.id;
+              alert($scope.postId);
            }).error(function(data, status, headers, config) {
                                       // called asynchronously if an error occurs
                                       // or server returns response with an error status.
@@ -165,11 +166,11 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                 Camera.getPicture({correctOrientation: true,
                                    destinationType: navigator.camera.DestinationType.DATA_URL,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
-                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:$base64.encode(imageData),id:'2'}).
+                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
                                                 // when the response is available
-                                                alert('be');
+                                                alert(data);
                                               }).
                                               error(function(data, status, headers, config) {
                                                 // called asynchronously if an error occurs
