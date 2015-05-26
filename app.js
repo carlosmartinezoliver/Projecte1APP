@@ -243,11 +243,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         function onSuccess(imageURI) {
             alert('OK! ' + imageURI);
             $timeout(function(){
-            images = [
-                image = imageURI;
-                // TODO: CREAR MENSAJE CARGA //
-            ]
-            $scope.image = images.image;
+                $scope.image = images.image;
             }, 1000);
         }
 
