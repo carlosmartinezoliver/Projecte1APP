@@ -166,7 +166,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                 Camera.getPicture({correctOrientation: true,
                                    destinationType: navigator.camera.DestinationType.DATA_URL,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
-                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:imageData,id:$scope.postId}).
+                                   alert(imageData)
+                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
                                                 // when the response is available
@@ -180,16 +181,16 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                               });
 
                     if($img === 'principal'){
-                        $scope.imagePrinc = imageURI;
+                        $scope.imagePrinc = imageData;
                     } else if($img === 'img1'){
-                        $scope.image1 = imageURI;
+                        $scope.image1 = imageData;
                     } else if($img === 'img2'){
-                        $scope.image2 = imageURI;
+                        $scope.image2 = imageData;
                     } else if($img === 'img3'){
-                        $scope.image3 = imageURI;
+                        $scope.image3 = imageData;
                     }
 
-                    console.log(imageURI);
+                    console.log(imageData);
                 }, function(err) {
                   console.err(err);
                 });
