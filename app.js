@@ -118,7 +118,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         };
 
         $scope.closeModal = function() {
-          $scope.modal.hide();
+          $scope.modal.remove();
         };
 
         // Cleanup the modal when we're done with it!
@@ -161,8 +161,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  buttonClicked: function(index) {
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
-                Camera.getPicture({correctOrientation: true}).then(function(imageURI) {
-                    $http.post('http://today.globals.cat/posts/image/upload', {params:{img:$img,foto:imageURI,id:'2'}}).
+                Camera.getPicture({correctOrientation: true}).then(function(imageData) {
+                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:imageData,id:'2'}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
                                                 // when the response is available
