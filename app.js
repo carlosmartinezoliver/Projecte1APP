@@ -139,7 +139,11 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
-          $http.get('http://today.globals.cat/posts/create').
+          $http.get('http://today.globals.cat/posts/create',{
+                                                                	    headers: {
+                                                                	      'Content-type': 'application/json'
+                                                                	    }
+                                                                	    }).
            success(function(data, status, headers, config) {
                                       // this callback will be called asynchronously
                                       // when the response is available
@@ -149,7 +153,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                       // called asynchronously if an error occurs
                                       // or server returns response with an error status.
                                       alert('merda');
-                                                $scope.modal.hide();
+                                       //         $scope.modal.hide();
 
             });
         });
@@ -166,7 +170,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true}).then(function(imageURI) {
-                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:imageURI,id:$scope.postId}).
+                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:imageURI,id:'2'}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
                                                 // when the response is available
