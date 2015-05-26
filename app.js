@@ -74,9 +74,7 @@ app.factory('Camera', ['$q', function($q) {
       var q = $q.defer();
 
       navigator.camera.getPicture(function(result) {
-            destinationType: navigator.camera.DestinationType.DATA_URL,
-                    encodingType: navigator.camera.EncodingType.JPEG,
-                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+
         // Do any magic you need
         q.resolve(result);
       }, function(err) {
@@ -164,7 +162,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  buttonClicked: function(index) {
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
-                Camera.getPicture({correctOrientation: true}).then(function(imageData) {
+                Camera.getPicture({correctOrientation: true,
+                                   destinationType: navigator.camera.DestinationType.DATA_URL,
+                                   encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
                     $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:$base64.encode(imageData),id:'2'}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
