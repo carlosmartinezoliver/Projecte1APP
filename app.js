@@ -164,6 +164,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
+                                            quality: 50,
                                    destinationType: navigator.camera.DestinationType.DATA_URL,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
                                    alert(imageData)
@@ -181,13 +182,13 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                               });
 
                     if($img === 'principal'){
-                        $scope.imagePrinc = imageData;
+                        $scope.imagePrinc = "data:image/jpeg;base64," + imageData;
                     } else if($img === 'img1'){
-                        $scope.image1 = imageData;
+                        $scope.image1 = "data:image/jpeg;base64," + imageData;
                     } else if($img === 'img2'){
-                        $scope.image2 = imageData;
+                        $scope.image2 = "data:image/jpeg;base64," + imageData;
                     } else if($img === 'img3'){
-                        $scope.image3 = imageData;
+                        $scope.image3 = "data:image/jpeg;base64," + imageData;
                     }
 
                     console.log(imageData);
