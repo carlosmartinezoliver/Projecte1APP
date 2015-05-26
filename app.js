@@ -1,4 +1,4 @@
-var app = angular.module('navApp', ['ionic', 'swipe', 'wu.masonry', 'ab-base64', 'base64', 'ui.router'])
+var app = angular.module('navApp', ['ionic', 'swipe', 'wu.masonry', 'ab-base64', 'base64', 'ui.router', 'ngCordova'])
 
 /*app.run(function($cordovaStatusbar) {
 
@@ -87,7 +87,7 @@ app.factory('Camera', ['$q', function($q) {
 }]);
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
+app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet,$cordovaFileTransfer, Camera){
     $scope.title = "Galeria";
 
     getPosts();
@@ -166,10 +166,11 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                 Camera.getPicture({correctOrientation: true,
                                             quality: 30,
                                             allowEdit: true,
-                                   destinationType: navigator.camera.DestinationType.DATA_URL,
+                                   destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
-                                   alert(imageData)
-                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
+
+                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload',imageData,{img:$img,id:$scope.postId});
+                    /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
                                                 // when the response is available
@@ -181,15 +182,15 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                                 alert(status);
                                                 alert(data);
                                               });
-
+*/
                     if($img === 'principal'){
-                        $scope.imagePrinc = "data:image/jpeg;base64," + imageData;
+                        $scope.imagePrinc = imageData;
                     } else if($img === 'img1'){
-                        $scope.image1 = "data:image/jpeg;base64," + imageData;
+                        $scope.image1 = imageData;
                     } else if($img === 'img2'){
-                        $scope.image2 = "data:image/jpeg;base64," + imageData;
+                        $scope.image2 = imageData;
                     } else if($img === 'img3'){
-                        $scope.image3 = "data:image/jpeg;base64," + imageData;
+                        $scope.image3 = imageData;
                     }
 
                     console.log(imageData);
