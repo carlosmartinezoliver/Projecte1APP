@@ -171,7 +171,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                               error(function(data, status, headers, config) {
                                                 // called asynchronously if an error occurs
                                                 // or server returns response with an error status.
-                                                alert('merda');
+                                                alert(status);
+                                                alert(data);
                                               });
 
                     if($img === 'principal'){
