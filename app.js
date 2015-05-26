@@ -128,7 +128,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         // Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function() {
           $scope.modal.remove();
-        });localhost/slimrest
+        });
         // Execute action on hide modal
         $scope.$on('modal.hide', function() {
           // Execute action
