@@ -166,8 +166,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                 Camera.getPicture({correctOrientation: true,
                                             quality: 30,
                                             allowEdit: true,
-                                   destinationType: navigator.camera.DestinationType.DATA_URL,
-                                   encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
+                                   destinationType: destinationType.DATA_URL}).then(function(imageData) {
                                    alert(imageData)
                     $http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
@@ -204,7 +203,28 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  }
                });
             }
-  
+
+        function getImage() {
+
+                navigator.camera.getPicture(onSuccess, onFail, {
+
+                    destinationType: navigator.camera.DestinationType.DATA_URL,
+                    encodingType: navigator.camera.EncodingType.JPEG,
+                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+
+                });
+
+                function onSuccess(imageData) {
+                    alert('OK! ' + imageData);
+                    $timeout(function(){
+                        $scope.image = imageData;
+                        // TODO: CREAR MENSAJE CARGA //
+                    }, 1000);
+                }
+
+                function onFail(message) {
+                    alert('Failed because: ' + message);
+                }
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
