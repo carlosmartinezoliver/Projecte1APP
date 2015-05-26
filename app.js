@@ -166,7 +166,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                 Camera.getPicture({correctOrientation: true,
                                             quality: 30,
                                             allowEdit: true,
-                                   destinationType: destinationType.DATA_URL}).then(function(imageData) {
+                                   destinationType: navigator.camera.DestinationType.DATA_URL,
+                                   encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
                                    alert(imageData)
                     $http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
@@ -202,7 +203,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                    return true;
                  }
                });
-          }
+            }
+
+
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
