@@ -92,7 +92,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     getPosts();
 
     function getPosts(){
-    	  var url = "http://localhost/slimrest/posts/";
+    	  var url = "http://today.globals.cat/posts/";
 
     	  $http.get(url, {
     	    headers: {
@@ -128,7 +128,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         // Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function() {
           $scope.modal.remove();
-        });
+        });localhost/slimrest
         // Execute action on hide modal
         $scope.$on('modal.hide', function() {
           // Execute action
@@ -139,6 +139,19 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
+          $http.get('http://today.globals.cat/posts/create').
+           success(function(data, status, headers, config) {
+                                      // this callback will be called asynchronously
+                                      // when the response is available
+                                      alert('be');
+              $scope.postId = data.id;
+           }).error(function(data, status, headers, config) {
+                                      // called asynchronously if an error occurs
+                                      // or server returns response with an error status.
+                                      alert('merda');
+                                                $scope.modal.hide();
+
+            });
         });
 
         $scope.openOptions = function($img) {
@@ -153,6 +166,18 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true}).then(function(imageURI) {
+                    $http.post('http://today.globals.cat/posts/image/upload', {img:$img,foto:imageURI,id:$scope.postId}).
+                                              success(function(data, status, headers, config) {
+                                                // this callback will be called asynchronously
+                                                // when the response is available
+                                                alert('be');
+                                              }).
+                                              error(function(data, status, headers, config) {
+                                                // called asynchronously if an error occurs
+                                                // or server returns response with an error status.
+                                                alert('merda');
+                                              });
+
                     if($img === 'principal'){
                         $scope.imagePrinc = imageURI;
                     } else if($img === 'img1'){
@@ -162,6 +187,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                     } else if($img === 'img3'){
                         $scope.image3 = imageURI;
                     }
+
                     console.log(imageURI);
                 }, function(err) {
                   console.err(err);
