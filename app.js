@@ -94,11 +94,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     function getPosts(){
     	  var url = "http://today.globals.cat/posts/";
 
-    	  $http.get(url, {
-    	    headers: {
-    	      'Content-type': 'application/json'
-    	    }
-    	    }).
+    	  $http.get(url).
     	     success(function(posts) {
                 console.log("Recogiendo posts...");
                 console.log(posts);
@@ -148,7 +144,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
            }).error(function(data, status, headers, config) {
                                       // called asynchronously if an error occurs
                                       // or server returns response with an error status.
-                                      alert('merda');
+                                      alert(status);
                                       $scope.modal.hide();
 
             });
