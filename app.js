@@ -165,7 +165,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
                                    quality: 30,
-                                   destinationType: navigator.camera.DestinationType.FILE_URI,
+                                   destinationType: navigator.camera.DestinationType.DATA_URL,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
                                    upload();
