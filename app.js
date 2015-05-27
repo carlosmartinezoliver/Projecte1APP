@@ -179,9 +179,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                  function upload(img, id) {
                                            var options = {
-                                               fileName: "image.png",
-                                               chunkedMode: false,
-                                               mimeType: "image/jpeg",
                                                img: $img,
                                                id: $scope.postId
                                            };
@@ -189,13 +186,13 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            alert(options.id);
                                            alert(options.img);
 
-                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', "/android_asset/www/img/ionic.png", options).then(function(result) {
-                                    alert('Subido!!');
-                                   }, function(err) {
-                                    alert('download error: ' + error.code + ": "+error.exception+" ; source " + error.source+" ; target " + error.target);
-                                   }, function(progress){
-                                    alert('What happens?!');
-                                   });
+                                           $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', "/android_asset/www/img/ionic.png", options).then(function(result) {
+                                            alert("SUCCESS: " + JSON.stringify(result.response));
+                                           }, function(err) {
+                                            alert("ERROR: " + JSON.stringify(err));
+                                           }, function(progress){
+                                            alert('What happens?!');
+                                           });
                                  };
 
 
