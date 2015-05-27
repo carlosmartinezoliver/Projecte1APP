@@ -164,6 +164,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
+                                   allowEdit: true,
                                    quality: 30,
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
@@ -186,7 +187,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            alert(options.id);
                                            alert(options.img);
 
-                                           $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', "/android_asset/www/img/ionic.png", options).then(function(result) {
+                                           $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
                                             alert("SUCCESS: " + JSON.stringify(result.response));
                                            }, function(err) {
                                             alert("ERROR: " + JSON.stringify(err));
