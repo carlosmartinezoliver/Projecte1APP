@@ -165,7 +165,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
                                    quality: 30,
-                                   destinationType: navigator.camera.DestinationType.FILE_URI,
+                                   destinationType: navigator.camera.DestinationType.DATA_URL,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
                                    $scope.upload = function() {
@@ -174,6 +174,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                                fileName: "image.png",
                                                chunkedMode: false,
                                                mimeType: "image/png"
+                                           };
                                    };
                                    $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload',imageData,{img:$img,id:$scope.postId});
                     /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
@@ -190,13 +191,13 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                               });
 */
                     if($img === 'principal'){
-                        $scope.imagePrinc = $img;
+                        $scope.imagePrinc = imageData;
                     } else if($img === 'img1'){
-                        $scope.image1 = $img;
+                        $scope.image1 = imageData;
                     } else if($img === 'img2'){
-                        $scope.image2 = $img;
+                        $scope.image2 = imageData;
                     } else if($img === 'img3'){
-                        $scope.image3 = $img;
+                        $scope.image3 = imageData;
                     }
 
                     console.log(imageData);
