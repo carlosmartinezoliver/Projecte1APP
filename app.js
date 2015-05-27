@@ -172,6 +172,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    var id = $scope.postId;
                                    var photo = imageData;
 
+                                   alert(options.id);
+                                   alert(options.img);
+                                   alert(options.photo);
 
 
                                    /* alert(imageData); */
