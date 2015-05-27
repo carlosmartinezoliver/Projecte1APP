@@ -164,7 +164,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
-                                   allowEdit: true,
                                    quality: 30,
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
