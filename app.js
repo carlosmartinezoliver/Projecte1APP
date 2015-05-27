@@ -168,6 +168,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
+                                   upload();
+
                                  function upload() {
                                            var options = {
                                                fileName: "image.png",
