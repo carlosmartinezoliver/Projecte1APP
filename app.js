@@ -170,6 +170,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    var img = $img;
                                    var id = $scope.postId;
+                                   var photo = imageData;
 
 
 
@@ -177,10 +178,11 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    upload();
 
-                                 function upload(img, id) {
+                                 function upload(img, id, photo) {
                                            var options = {
                                                img: $img,
-                                               id: $scope.postId
+                                               id: $scope.postId,
+                                               photo: $photo
                                            };
 
                                            alert(options.id);
