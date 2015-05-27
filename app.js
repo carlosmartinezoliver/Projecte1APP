@@ -170,13 +170,19 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    $scope.upload = function() {
                                            var options = {
-                                               fileKey: "avatar",
                                                fileName: "image.png",
                                                chunkedMode: false,
-                                               mimeType: "image/png"
+                                               mimeType: "image/jpeg"
                                            };
                                    };
-                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload',imageData,{img:$img,id:$scope.postId});
+
+                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload',imageData,{img:$img,id:$scope.postId}).then(function(result) {
+                                    alert('Subido!!');
+                                   }, function(err) {
+                                    alert('Shit!');
+                                   }, function(progress){
+
+                                   };
                     /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
