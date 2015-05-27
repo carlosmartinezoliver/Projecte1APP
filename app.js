@@ -176,7 +176,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    /* alert(imageData); */
 
-                                   upload();
+                                   upload($img, $id, $photo);
 
                                  function upload(img, id, photo) {
                                            var options = {
