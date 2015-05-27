@@ -189,7 +189,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
                                     alert('Subido!!');
                                    }, function(err) {
-                                    alert('Shit!');
+                                    alert('Shit!: ' + err);
                                    }, function(progress){
                                     alert('What happens?!');
                                    });
