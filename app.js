@@ -168,10 +168,14 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
-                                   upload();
-
                                    var img = $img;
                                    var id = $scope.postId;
+
+
+
+                                   alert(imageData);
+
+                                   upload();
 
                                  function upload(img, id) {
                                            var options = {
@@ -184,7 +188,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                            alert(options.id);
                                            alert(options.img);
-                                           alert(imageData);
 
                                    $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
                                     alert('Subido!!');
