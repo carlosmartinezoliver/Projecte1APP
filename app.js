@@ -176,7 +176,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    /* alert(imageData); */
 
-                                   upload($img, $id, $photo);
+                                   upload();
 
                                  function upload(img, id, photo) {
                                            var options = {
@@ -187,6 +187,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                            alert(options.id);
                                            alert(options.img);
+                                           alert(options.photo);
 
                                            $cordovaFileTransfer.upload('http://today.globals.cat/posts/images/upload', imageData, options).then(function(result) {
                                             alert("SUCCESS: " + JSON.stringify(result.response));
