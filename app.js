@@ -189,24 +189,13 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
                                     alert('Subido!!');
                                    }, function(err) {
-                                    alert('Shit!: ' + err);
+                                    alert('Shit!: ' + err.code);
                                    }, function(progress){
                                     alert('What happens?!');
                                    });
                                  };
-                    /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
-                                              success(function(data, status, headers, config) {
-                                                // this callback will be called asynchronously
-                                                // when the response is available
-                                                alert(data);
-                                              }).
-                                              error(function(data, status, headers, config) {
-                                                // called asynchronously if an error occurs
-                                                // or server returns response with an error status.
-                                                alert(status);
-                                                alert(data);
-                                              });
-*/
+
+
                     if($img === 'principal'){
                         $scope.imagePrinc = imageData;
                     } else if($img === 'img1'){
