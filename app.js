@@ -170,13 +170,16 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    upload();
 
-                                 function upload() {
+                                   var img = $img;
+                                   var id = $scope.postId;
+
+                                 function upload(img, id) {
                                            var options = {
                                                fileName: "image.png",
                                                chunkedMode: false,
                                                mimeType: "image/jpeg",
-                                               img:$img,
-                                               id:$scope.postId
+                                               img: $img,
+                                               id: $scope.postId
                                            };
 
                                            alert(options.id);
