@@ -185,11 +185,10 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            alert(options.id);
                                            alert(options.img);
 
-                                    var URL = imageData.toURL();
-                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', URL, options).then(function(result) {
+                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
                                     alert('Subido!!');
                                    }, function(err) {
-                                    alert('Shit!: ' + err.code);
+                                    alert('download error: ' + error.code + ": "+error.exception+" ; source " + error.source+" ; target " + error.target);
                                    }, function(progress){
                                     alert('What happens?!');
                                    });
