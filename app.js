@@ -185,8 +185,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            alert(options.id);
                                            alert(options.img);
 
-
-                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData.toURL(), options).then(function(result) {
+                                    var URL = imageData.toURL();
+                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', URL, options).then(function(result) {
                                     alert('Subido!!');
                                    }, function(err) {
                                     alert('Shit!: ' + err.code);
