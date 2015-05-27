@@ -87,7 +87,7 @@ app.factory('Camera', ['$q', function($q) {
 }]);
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
+app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera, $cordovaFileTransfer){
     $scope.title = "Galeria";
 
     getPosts();
@@ -186,7 +186,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            alert(options.img);
 
 
-                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload',imageData,options).then(function(result) {
+                                   $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
                                     alert('Subido!!');
                                    }, function(err) {
                                     alert('Shit!');
