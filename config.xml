@@ -67,6 +67,21 @@
 	<gap:plugin name="org.apache.cordova.camera" />
 	<gap:plugin name="org.apache.cordova.media-capture" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
+
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+    </feature>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="Storage">
+        <param value="org.apache.cordova.Storage" name="android-package"/>
+    </feature>
+
 	<feature name="Camera">
     	<param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
 	</feature>
