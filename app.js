@@ -183,7 +183,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                     alert('Shit!');
                                    }, function(progress){
                                     alert('What happens?!');
-                                   };
+                                   });
                                    };
                     /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
