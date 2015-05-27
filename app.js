@@ -168,7 +168,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
-                                   $scope.upload = function() {
+                                 function() {
                                            var options = {
                                                fileName: "image.png",
                                                chunkedMode: false,
@@ -184,7 +184,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    }, function(progress){
                                     alert('What happens?!');
                                    });
-                                   };
+                                 };
                     /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
                                                 // this callback will be called asynchronously
