@@ -164,11 +164,17 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
-                                            quality: 30,
-                                            allowEdit: true,
+                                   quality: 30,
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
+                                   $scope.upload = function() {
+                                           var options = {
+                                               fileKey: "avatar",
+                                               fileName: "image.png",
+                                               chunkedMode: false,
+                                               mimeType: "image/png"
+                                   };
                                    $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload',imageData,{img:$img,id:$scope.postId});
                     /*$http.post('http://today.globals.cat/posts/image/upload', {img:$img,photo:imageData,id:$scope.postId}).
                                               success(function(data, status, headers, config) {
@@ -184,13 +190,13 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                               });
 */
                     if($img === 'principal'){
-                        $scope.imagePrinc = imageData;
+                        $scope.imagePrinc = $img;
                     } else if($img === 'img1'){
-                        $scope.image1 = imageData;
+                        $scope.image1 = $img;
                     } else if($img === 'img2'){
-                        $scope.image2 = imageData;
+                        $scope.image2 = $img;
                     } else if($img === 'img3'){
-                        $scope.image3 = imageData;
+                        $scope.image3 = $img;
                     }
 
                     console.log(imageData);
