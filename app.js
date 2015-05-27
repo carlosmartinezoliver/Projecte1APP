@@ -1,4 +1,4 @@
-var app = angular.module('navApp', ['ionic', 'swipe', 'wu.masonry', 'ab-base64', 'base64', 'ui.router', 'ngCordova'])
+var app = angular.module('navApp', ['ionic', 'swipe', 'wu.masonry', 'ab-base64', 'base64', 'ui.router', 'ngCordova', 'ngCordova.plugins.fileTransfer'])
 
 /*app.run(function($cordovaStatusbar) {
 
@@ -87,7 +87,7 @@ app.factory('Camera', ['$q', function($q) {
 }]);
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet,$cordovaFileTransfer, Camera){
+app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera){
     $scope.title = "Galeria";
 
     getPosts();
