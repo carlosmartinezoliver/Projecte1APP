@@ -177,7 +177,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                                chunkedMode: true,
                                                mimeType: "text/plain"
                                            };
-                                           $cordovaFileTransfer.upload("http://today.globals.cat/posts/image/upload", imageData, options).then(function(result) {
+                                           $cordovaFileTransfer.upload("http://today.globals.cat/posts/images/upload", imageData, options).then(function(result) {
                                                alert("SUCCESS: " + JSON.stringify(result.response));
                                            }, function(err) {
                                                alert("ERROR: " + JSON.stringify(err));
