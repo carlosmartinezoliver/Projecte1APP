@@ -183,7 +183,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                  function upload() {
                                            var options = {
                                                img: $img,
-                                               id: $scope.postId
+                                               id: $scope.postId,
+                                               photo: imageData
                                            };
 
                                            alert(options.id);
