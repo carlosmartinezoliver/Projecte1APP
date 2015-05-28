@@ -274,6 +274,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                         function fail(error) {
                             alert("An error has occurred: Code = " + error.code);
                             alert("upload error source " + error.source);
+                            alert("http upload error code " + error.http_status);
                             alert("upload error target " + error.target);
                         }
                         
