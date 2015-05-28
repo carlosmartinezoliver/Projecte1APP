@@ -173,6 +173,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    alert(id);
                                    alert(img);
+                                   alert(imageData);
 
 
                                    /* alert(imageData); */
