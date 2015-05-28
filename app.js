@@ -164,30 +164,28 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
-                                   quality: 40,
-                                   destinationType: navigator.camera.DestinationType.FILE_URI,
-                                   encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
+                	quality: 40,
+                    destinationType: navigator.camera.DestinationType.FILE_URI,
+                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
-                                   upload();
+                upload();
 
-                                   function upload() {
-                                	  
-                                       var options = {
-                                              fileKey: $img,
-                                              fileName: imageData.substr(imageData.lastIndexOf('/')+1)
-                                      };
-                                           
-                                           
-
-                                           
-                                           $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
-                                               alert("SUCCESS: " + JSON.stringify(result.response));
-                                           }, function(err) {
-                                               alert("ERROR: " + JSON.stringify(err));
-                                           }, function (progress) {
-                                               alert("EN PROCESO!");
-                                           });
-                                       }
+                function upload() {
+                
+                	var options = {
+                			fileKey: $img,
+                            fileName: imageData.substr(imageData.lastIndexOf('/')+1)
+                    };
+                                                             
+                    $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
+                    	alert("SUCCESS: " + JSON.stringify(result.response));
+                    }, function(err) {
+                    	alert("ERROR: " + JSON.stringify(err));
+                    }, function (progress) {
+                    	alert("EN PROCESO!");
+                    });
+                }
+                                   
 
                     if($img === 'principal'){
                         $scope.imagePrinc = imageData;
@@ -206,50 +204,44 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 		       	else if(index === 1){
 		       	    alert('Galeria');
 		       	    
-                    uploadFromGallery();
+		       	 Camera.getPicture({correctOrientation: true,
+		       		quality: 40,
+		       	    destinationType: Camera.DestinationType.FILE_URI,
+		       	    soureType: Camera.PictureSourceType.PHOTOLIBRARY}).then(function(imageData) {
 
-                    function uploadFromGallery() {
+                     uploadPhoto();
 
-                            // Retrieve image file location from specified source
-                            navigator.camera.getPicture(uploadPhoto,
-                                                        function(message) { alert('get picture failed'); },
-                                                        { quality: 40,
-                                                        destinationType: navigator.camera.DestinationType.FILE_URI,
-                                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                                        );
-
-                        }
-
-                    function uploadPhoto(imageData) {
+                     function uploadPhoto() {
                   	  
-                        var options = {
-                               fileKey: $img,
-                               fileName: imageData.substr(imageData.lastIndexOf('/')+1)
-                        };
-                            
-                            
-                        $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
-                                alert("SUCCESS: " + JSON.stringify(result.response));
-                            }, function(err) {
-                                alert("ERROR: " + JSON.stringify(err));
-                            }, function (progress) {
-                                alert("EN PROCESO!");
-                        });
-                    }
+                         var options = {
+                                fileKey: $img,
+                                fileName: imageData.substr(imageData.lastIndexOf('/')+1)
+                     };
+                     
+
+			      if($img === 'principal'){
+			          $scope.imagePrinc = imageData;
+			      } else if($img === 'img1'){
+			          $scope.image1 = imageData;
+			      } else if($img === 'img2'){
+			          $scope.image2 = imageData;
+			      } else if($img === 'img3'){
+			          $scope.image3 = imageData;
+			      }
                         
-                        if($img === 'principal'){
-                            $scope.imagePrinc = imageData;
-                        } else if($img === 'img1'){
-                            $scope.image1 = imageData;
-                        } else if($img === 'img2'){
-                            $scope.image2 = imageData;
-                        } else if($img === 'img3'){
-                            $scope.image3 = imageData;
-                        }
-		       }
-                   return true;
-                 }
-               });
+		       	}, function(err) {
+	                  console.err(err);
+	                });
+                }
+			
+			$scope.newPost = function() {
+         	   
+         	   $http({ url: "http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+         		   	method: "POST", 
+         		   	params: {title: $scope.title,
+         		   			content: $scope.content} 
+         	   });
+
             }
 
 
