@@ -184,7 +184,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                     }, function (progress) {
                     	alert("EN PROCESO!");
                     });
-                }
+                })
                                    
 
                     if($img === 'principal'){
@@ -200,9 +200,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                 }, function(err) {
                   console.err(err);
                 });
-		 	}
-		       	else if(index === 1){
-		       	    alert('Galeria');
+                } else if(index === 1){
+		       	 alert('Galeria');
 		       	    
 		       	 Camera.getPicture({correctOrientation: true,
 		       		quality: 40,
@@ -251,7 +250,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
          		   			content: $scope.content} 
          	   });
 
-            }
+            });
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
