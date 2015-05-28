@@ -173,7 +173,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    function upload() {
                                            var options = {
                                                fileKey: "avatar",
-                                               fileName: imageData.substr(imageUriToUpload.lastIndexOf('/')+1),
+                                               fileName: imageData.substr(imageData.lastIndexOf('/')+1),
                                                chunkedMode: true,
                                                mimeType: "text/plain"
                                            };
