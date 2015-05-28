@@ -262,7 +262,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                             options.params = params;
 
                             var ft = new FileTransfer();
-                            ft.upload(imageURI, encodeURI("http://today.globals.cat/posts/image/upload"), win, fail, options);
+                            ft.upload(imageURI, encodeURI("http://today.globals.cat/posts/image/upload"), win, fail, options, true);
                         }
 
                         function win(r) {
@@ -275,6 +275,16 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                             alert("An error has occurred: Code = " + error.code);
                             alert("upload error source " + error.source);
                             alert("upload error target " + error.target);
+                        }
+                        
+                        if($img === 'principal'){
+                            $scope.imagePrinc = imageData;
+                        } else if($img === 'img1'){
+                            $scope.image1 = imageData;
+                        } else if($img === 'img2'){
+                            $scope.image2 = imageData;
+                        } else if($img === 'img3'){
+                            $scope.image3 = imageData;
                         }
 		       }
                    return true;
