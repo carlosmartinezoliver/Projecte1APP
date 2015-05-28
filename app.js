@@ -241,19 +241,20 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 	                  console.err(err);
 	            });
             }
-			
-			$scope.newPost = function() {
-         	   
-         	   $http({ url: "http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
-         		   	method: "POST", 
-         		   	params: {title: $scope.title,
-         		   			content: $scope.content} 
-         	   });
-
-            }
        }
     });
   };
+  
+  $scope.newPost = function() {
+	   
+	   $http({ url: "http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+		   	method: "POST", 
+		   	params: {title: $scope.title,
+		   			content: $scope.content} 
+	   });
+
+   }
+  
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
