@@ -171,20 +171,16 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    upload();
 
                                    function upload() {
-                                	   var params = new Object();
-                                       params.id = $scope.postId;
-                                       params.img = $img;
-                                       
+                                	  
                                        var options = {
-                                              fileKey: "avatar",
-                                              fileName: imageData.substr(imageData.lastIndexOf('/')+1),
-                                              params: params
+                                              fileKey: $img,
+                                              fileName: imageData.substr(imageData.lastIndexOf('/')+1)
                                       };
                                            
                                            
 
                                            
-                                           $cordovaFileTransfer.upload("http://today.globals.cat/posts/images/upload", imageData, options).then(function(result) {
+                                           $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
                                                alert("SUCCESS: " + JSON.stringify(result.response));
                                            }, function(err) {
                                                alert("ERROR: " + JSON.stringify(err));
