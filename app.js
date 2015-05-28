@@ -94,11 +94,21 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     
     $scope.newPost = function() {
  	   
- 	   $http({ url: "http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
- 		   	method: "POST", 
- 		   	params: {title: $scope.title,
- 		   			content: $scope.content} 
- 	   });
+ 	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+ 			   {title: $scope.title,
+ 		   		content: $scope.content}).
+ 	  success(function(data, status, headers, config) {
+ 		  alert("DONE!");
+ 		  alert(status);
+ 		    // this callback will be called asynchronously
+ 		    // when the response is available
+ 	  }).
+ 	  error(function(data, status, headers, config) {
+ 		  alert("BADD!");
+ 		  alert(status);
+ 		    // called asynchronously if an error occurs
+ 		    // or server returns response with an error status.
+ 	  });
 
     }
 
