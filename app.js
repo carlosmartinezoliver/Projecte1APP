@@ -173,9 +173,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    function upload() {
                                            var options = {
                                                fileKey: "avatar",
-                                               fileName: "image.jpg",
-                                               chunkedMode: false,
-                                               mimeType: "image/jpeg"
+                                               fileName: imageUriToUpload.substr(imageUriToUpload.lastIndexOf('/')+1),
+                                               chunkedMode: true,
+                                               mimeType: "text/plain"
                                            };
                                            $cordovaFileTransfer.upload("http://today.globals.cat/posts/image/upload", imageData, options).then(function(result) {
                                                alert("SUCCESS: " + JSON.stringify(result.response));
