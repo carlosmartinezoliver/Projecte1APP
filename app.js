@@ -256,6 +256,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                             options.mimeType="text/plain";
 
                             var params = new Object();
+                            params.id = $scope.postId;
+                            params.img = $img;
 
                             options.params = params;
 
@@ -264,15 +266,15 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                         }
 
                         function win(r) {
-                            console.log("Code = " + r.responseCode);
-                            console.log("Response = " + r.response);
-                            console.log("Sent = " + r.bytesSent);
+                            alert("Code = " + r.responseCode);
+                            alert("Response = " + r.response);
+                            alert("Sent = " + r.bytesSent);
                         }
 
                         function fail(error) {
                             alert("An error has occurred: Code = " + error.code);
-                            console.log("upload error source " + error.source);
-                            console.log("upload error target " + error.target);
+                            alert("upload error source " + error.source);
+                            alert("upload error target " + error.target);
                         }
 		       }
                    return true;
