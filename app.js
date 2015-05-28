@@ -252,7 +252,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
          	   });
 
             }
-       }
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
