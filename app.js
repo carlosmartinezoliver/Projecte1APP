@@ -253,7 +253,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
             }
        }
-       })
+       });
 
      }
 
