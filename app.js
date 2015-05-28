@@ -240,8 +240,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                         
 		       	}, function(err) {
 	                  console.err(err);
-	                });
-                }
+	            });
+            }
 			
 			$scope.newPost = function() {
          	   
@@ -252,9 +252,10 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
          	   });
 
             }
+       }
+       })
 
-
-});
+     }
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
