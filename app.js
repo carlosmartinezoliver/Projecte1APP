@@ -164,7 +164,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 			if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
-                                   quality: 30,
+                                   quality: 40,
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
@@ -188,38 +188,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                                alert("EN PROCESO!");
                                            });
                                        }
-                                   /*var img = $img;
-                                   var id = $scope.postId;
-
-                                   alert(id);
-                                   alert(img);
-                                   alert(imageData);
-
-
-                                   /* alert(imageData); */
-/*
-                                   upload();
-
-                                 function upload() {
-                                           var options = {
-                                               img: $img,
-                                               id: $scope.postId,
-                                               photo: imageData
-                                           };
-
-                                           alert(options.id);
-                                           alert(options.img);
-                                           alert(options.photo);
-
-                                           $cordovaFileTransfer.upload('http://today.globals.cat/posts/image/upload', imageData, options).then(function(result) {
-                                            alert("SUCCESS: " + JSON.stringify(result.response));
-                                           }, function(err) {
-                                            alert("ERROR: " + JSON.stringify(err));
-                                           }, function(progress){
-                                            alert('What happens?!');
-                                           });
-                                 };*/
-
 
                     if($img === 'principal'){
                         $scope.imagePrinc = imageData;
@@ -231,13 +199,13 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                         $scope.image3 = imageData;
                     }
 
-                    console.log(imageData);
                 }, function(err) {
                   console.err(err);
                 });
 		 	}
 		       	else if(index === 1){
 		       	    alert('Galeria');
+		       	    
                     uploadFromGallery();
 
                     function uploadFromGallery() {
@@ -245,42 +213,29 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                             // Retrieve image file location from specified source
                             navigator.camera.getPicture(uploadPhoto,
                                                         function(message) { alert('get picture failed'); },
-                                                        { quality: 50,
+                                                        { quality: 40,
                                                         destinationType: navigator.camera.DestinationType.FILE_URI,
                                                         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
                                                         );
 
                         }
 
-                        function uploadPhoto(imageURI) {
-                            var options = new FileUploadOptions();
-                            options.fileKey= "file";
-                            options.fileName = imageUri.substr(imageUri.lastIndexOf('/')+1);
-                            options.mimeType= "text/plain";
-                            options.chunkedMode = true;
-
-                            var params = new Object();
-                            params.id = $scope.postId;
-                            params.img = $img;
-
-                            options.params = params;
-
-                            var ft = new FileTransfer();
-                            ft.upload(imageURI.toURL, encodeURI("http://today.globals.cat/posts/images/upload"), win, fail, options);
-                        }
-
-                        function win(r) {
-                            alert("Code = " + r.responseCode);
-                            alert("Response = " + r.response);
-                            alert("Sent = " + r.bytesSent);
-                        }
-
-                        function fail(error) {
-                            alert("An error has occurred: Code = " + error.code);
-                            alert("upload error source " + error.source);
-                            alert("http upload error code " + error.http_status);
-                            alert("upload error target " + error.target);
-                        }
+                    function upload(imageData) {
+                  	  
+                        var options = {
+                               fileKey: $img,
+                               fileName: imageData.substr(imageData.lastIndexOf('/')+1)
+                        };
+                            
+                            
+                        $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
+                                alert("SUCCESS: " + JSON.stringify(result.response));
+                            }, function(err) {
+                                alert("ERROR: " + JSON.stringify(err));
+                            }, function (progress) {
+                                alert("EN PROCESO!");
+                        });
+                    }
                         
                         if($img === 'principal'){
                             $scope.imagePrinc = imageData;
