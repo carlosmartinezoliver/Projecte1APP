@@ -252,7 +252,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                         function uploadPhoto(imageURI) {
                             var options = new FileUploadOptions();
                             options.fileKey= "file";
-                            options.fileName = imageUriToUpload.substr(imageUriToUpload.lastIndexOf('/')+1);
+                            options.fileName = imageUri.substr(imageUri.lastIndexOf('/')+1);
                             options.mimeType= "text/plain";
                             options.chunkedMode = true;
 
@@ -263,7 +263,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                             options.params = params;
 
                             var ft = new FileTransfer();
-                            ft.upload(imageURI, encodeURI("http://today.globals.cat/posts/image/upload"), win, fail, options, true);
+                            ft.upload(imageURI.toURL, encodeURI("http://today.globals.cat/posts/images/upload"), win, fail, options);
                         }
 
                         function win(r) {
