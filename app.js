@@ -168,7 +168,35 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
-                                   var img = $img;
+                                   function uploadPhoto(imageURI) {
+                                               var options = new FileUploadOptions();
+                                               options.fileKey="file";
+                                               options.fileName=imageData.substr(imageURI.lastIndexOf('/')+1);
+                                               options.mimeType="image/jpeg";
+
+                                               var params = {};
+                                               params.img = $img;
+                                               params.id = $scope.postId;
+                                               params.photo = imageData;
+
+                                               options.params = params;
+
+                                               var ft = new FileTransfer();
+                                               ft.upload(imageData, encodeURI("http://today.globals.cat/posts/image/upload"), win, fail, options);
+                                           }
+
+                                           function win(r) {
+                                               console.log("Code = " + r.responseCode);
+                                               console.log("Response = " + r.response);
+                                               console.log("Sent = " + r.bytesSent);
+                                           }
+
+                                           function fail(error) {
+                                               alert("An error has occurred: Code = " + error.code);
+                                               console.log("upload error source " + error.source);
+                                               console.log("upload error target " + error.target);
+                                           }
+                                   /*var img = $img;
                                    var id = $scope.postId;
 
                                    alert(id);
@@ -177,7 +205,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
 
                                    /* alert(imageData); */
-
+/*
                                    upload();
 
                                  function upload() {
@@ -198,7 +226,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            }, function(progress){
                                             alert('What happens?!');
                                            });
-                                 };
+                                 };*/
 
 
                     if($img === 'principal'){
