@@ -220,7 +220,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                         }
 
-                    function upload(imageData) {
+                    function uploadPhoto(imageData) {
                   	  
                         var options = {
                                fileKey: $img,
