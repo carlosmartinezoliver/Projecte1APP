@@ -249,9 +249,11 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
          		   	params: {title: $scope.title,
          		   			content: $scope.content} 
          	   });
-
-            });
-});
+            }
+                 }
+              });
+            };
+          });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
