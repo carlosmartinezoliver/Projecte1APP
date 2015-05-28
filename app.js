@@ -87,7 +87,7 @@ app.factory('Camera', ['$q', function($q) {
 }]);
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera, $cordovaFileTransfer){
+app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera, $cordovaFileTransfer, $base64){
     $scope.title = "Galeria";
 
     getPosts();
@@ -170,7 +170,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                                    var img = $img;
                                    var id = $scope.postId;
-                                   var photo = imageData;
+                                   var photo = $base64.encode(imageData);
 
                                    alert(options.id);
                                    alert(options.img);
