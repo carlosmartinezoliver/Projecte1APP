@@ -207,7 +207,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 		       	 Camera.getPicture({correctOrientation: true,
 		       		quality: 40,
 		       	    destinationType: Camera.DestinationType.FILE_URI,
-		       	    soureType: Camera.PictureSourceType.PHOTOLIBRARY}).then(function(imageData) {
+		       	    sourceType: Camera.PictureSourceType.PHOTOLIBRARY}).then(function(imageData) {
 
                      uploadPhoto();
 
