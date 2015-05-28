@@ -216,18 +216,27 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                          var options = {
                                 fileKey: $img,
                                 fileName: imageData.substr(imageData.lastIndexOf('/')+1)
-                     };
+                         };
+                      
+                         $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
+                         	alert("SUCCESS: " + JSON.stringify(result.response));
+                         }, function(err) {
+                         	alert("ERROR: " + JSON.stringify(err));
+                         }, function (progress) {
+                         	alert("EN PROCESO!");
+                         });
+                     }
                      
 
-			      if($img === 'principal'){
-			          $scope.imagePrinc = imageData;
-			      } else if($img === 'img1'){
-			          $scope.image1 = imageData;
-			      } else if($img === 'img2'){
-			          $scope.image2 = imageData;
-			      } else if($img === 'img3'){
-			          $scope.image3 = imageData;
-			      }
+                     if($img === 'principal'){
+                    	 $scope.imagePrinc = imageData;
+                     } else if($img === 'img1'){
+                    	 $scope.image1 = imageData;
+                     } else if($img === 'img2'){
+                    	 $scope.image2 = imageData;
+                     } else if($img === 'img3'){
+                    	 $scope.image3 = imageData;
+                     }
                         
 		       	}, function(err) {
 	                  console.err(err);
