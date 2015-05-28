@@ -161,7 +161,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                  titleText: 'Nueva fotografia',
                  cancelText: 'Cancelar',
                  buttonClicked: function(index) {
-			if(index === 0){ // Manual Button
+                if(index === 0){ // Manual Button
 				alert('Camara ' + $img);
                 Camera.getPicture({correctOrientation: true,
                 	quality: 40,
@@ -253,9 +253,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
             }
        }
-       });
-
-     }
+});
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
@@ -330,79 +328,6 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
         });
     }
 
-    /*function getID() {
-
-        var url = "http://localhost/slimrest/id/lastImg";
-
-        $http.get(url, {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }).
-        success(function(id) {
-            console.log(id.id);
-            $scope.index = id.id;
-        }).
-        error(function() {
-            console.log("error");
-        });
-
-    };
-
-    function getAllImages(){
-    	  var url = "http://localhost/slimrest/images/" + $scope.index;
-
-    	  $http.get(url, {
-    	    headers: {
-    	      'Content-type': 'image/jpeg'
-    	    }
-    	    }).
-    	     success(function(image) {
-                console.log("Recogiendo imagenes...");
-                $scope.allImg = image;
-                $scope.id = $scope.index;
-             }).
-    	    error(function(data_todo) {
-    	        console.log("error");
-    	  })
-    }
-
-    // Get images from DDBB //
-
-    getID();
-
-    // Timeout for async task //
-
-
-            $timeout(function(){
-                getAllImages();
-                // TODO: CREAR MENSAJE CARGA //
-            }, 1000);
-    */
-    /*function genBrick(i) {
-        var height = ~~(Math.random() * 500) + 100;
-        var id = ~~(Math.random() * 10000);
-        return {
-            src: 'http://lorempixel.com/g/280/' + height + '/?' + id,
-            index: i
-        };
-    };
-
-
-    $scope.bricks = [
-        genBrick(0),
-        genBrick(1),
-        genBrick(2),
-        genBrick(3),
-        genBrick(4),
-        genBrick(5),
-        genBrick(6),
-        genBrick(7),
-        genBrick(8),
-        genBrick(9),
-        genBrick(10),
-        genBrick(11)
-    ];*/
 
     $ionicModal.fromTemplateUrl('gallery-modal.html', {
       scope: $scope,
