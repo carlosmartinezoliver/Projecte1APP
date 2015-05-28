@@ -168,9 +168,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                     destinationType: navigator.camera.DestinationType.FILE_URI,
                     encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
-                upload();
+                	upload();
 
-                function upload() {
+                	function upload() {
                 
                 	var options = {
                 			fileKey: $img,
@@ -184,24 +184,24 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                     }, function (progress) {
                     	alert("EN PROCESO!");
                     });
-                })
+                }
                                    
 
-                    if($img === 'principal'){
-                        $scope.imagePrinc = imageData;
-                    } else if($img === 'img1'){
-                        $scope.image1 = imageData;
-                    } else if($img === 'img2'){
-                        $scope.image2 = imageData;
-                    } else if($img === 'img3'){
-                        $scope.image3 = imageData;
-                    }
+                if($img === 'principal'){
+                    $scope.imagePrinc = imageData;
+                } else if($img === 'img1'){
+                	$scope.image1 = imageData;
+                } else if($img === 'img2'){
+                    $scope.image2 = imageData;
+                } else if($img === 'img3'){
+                    $scope.image3 = imageData;
+                }
 
                 }, function(err) {
                   console.err(err);
                 });
-                } else if(index === 1){
-		       	 alert('Galeria');
+		 	} else if(index === 1){
+		         alert('Galeria');
 		       	    
 		       	 Camera.getPicture({correctOrientation: true,
 		       		quality: 40,
@@ -249,11 +249,12 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
          		   	params: {title: $scope.title,
          		   			content: $scope.content} 
          	   });
+
             }
-                 }
-              });
-            };
-          });
+       }
+    });
+  };
+});
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
