@@ -168,36 +168,23 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
-                                   uploadPhoto();
+                                   upload();
 
-                                   function uploadPhoto(imageData) {
-                                               var options = new FileUploadOptions();
-                                               options.fileKey="file";
-                                               options.fileName=imageData.substr(imageURI.lastIndexOf('/')+1);
-                                               options.mimeType="image/jpeg";
-
-                                               var params = {};
-                                               params.img = $img;
-                                               params.id = $scope.postId;
-                                               params.photo = imageData;
-
-                                               options.params = params;
-
-                                               var ft = new FileTransfer();
-                                               ft.upload(imageData, encodeURI("http://today.globals.cat/posts/image/upload"), win, fail, options);
-                                           }
-
-                                           function win(r) {
-                                               alert("Code = " + r.responseCode);
-                                               alert("Response = " + r.response);
-                                               alert("Sent = " + r.bytesSent);
-                                           }
-
-                                           function fail(error) {
-                                               alert("An error has occurred: Code = " + error.code);
-                                               alert("upload error source " + error.source);
-                                               alert("upload error target " + error.target);
-                                           }
+                                   function upload() {
+                                           var options = {
+                                               fileKey: "avatar",
+                                               fileName: "image.jpg",
+                                               chunkedMode: false,
+                                               mimeType: "image/jpeg"
+                                           };
+                                           $cordovaFileTransfer.upload("http://today.globals.cat/posts/image/upload", imageData, options).then(function(result) {
+                                               alert("SUCCESS: " + JSON.stringify(result.response));
+                                           }, function(err) {
+                                               alert("ERROR: " + JSON.stringify(err));
+                                           }, function (progress) {
+                                               alert("EN PROCESO!");
+                                           });
+                                       }
                                    /*var img = $img;
                                    var id = $scope.postId;
 
