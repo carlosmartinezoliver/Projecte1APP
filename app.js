@@ -251,9 +251,9 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
                         function uploadPhoto(imageURI) {
                             var options = new FileUploadOptions();
-                            options.fileKey="file";
-                            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.jpg';
-                            options.mimeType="text/plain";
+                            options.fileKey= "file";
+                            options.fileName= 'image.jpg';
+                            options.mimeType= "text/plain";
 
                             var params = new Object();
                             params.id = $scope.postId;
