@@ -168,6 +168,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    destinationType: navigator.camera.DestinationType.FILE_URI,
                                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
 
+                                   uploadPhoto(imageData);
+
                                    function uploadPhoto(imageURI) {
                                                var options = new FileUploadOptions();
                                                options.fileKey="file";
@@ -186,15 +188,15 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                            }
 
                                            function win(r) {
-                                               console.log("Code = " + r.responseCode);
-                                               console.log("Response = " + r.response);
-                                               console.log("Sent = " + r.bytesSent);
+                                               alert("Code = " + r.responseCode);
+                                               alert("Response = " + r.response);
+                                               alert("Sent = " + r.bytesSent);
                                            }
 
                                            function fail(error) {
                                                alert("An error has occurred: Code = " + error.code);
-                                               console.log("upload error source " + error.source);
-                                               console.log("upload error target " + error.target);
+                                               alert("upload error source " + error.source);
+                                               alert("upload error target " + error.target);
                                            }
                                    /*var img = $img;
                                    var id = $scope.postId;
