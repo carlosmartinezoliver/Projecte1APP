@@ -99,6 +99,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
  		   		content: $scope.content}).
  	  success(function(data, status, headers, config) {
  		  alert("DONE!");
+ 		  alert(data);
  		  alert(status);
  		    // this callback will be called asynchronously
  		    // when the response is available
