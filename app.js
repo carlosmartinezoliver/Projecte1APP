@@ -136,8 +136,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
-
-          }
+          
           $http.get('http://today.globals.cat/posts/create').
            success(function(data, status, headers, config) {
                                       // this callback will be called asynchronously
@@ -177,6 +176,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
        		    // called asynchronously if an error occurs
        		    // or server returns response with an error status.
        	  });
+
+          }
 
         $scope.openOptions = function($img) {
              $ionicActionSheet.show({
