@@ -6,7 +6,7 @@
         </div>
         <h1 class="title">Nuevo</h1>
         <div class="buttons">
-            <button class="button button-clear icon ion-checkmark-round header-button" ng-click="newPost()"></button>
+            <button class="button button-clear icon ion-checkmark-round header-button" ng-click="newPost(post)"></button>
         </div>
     </ion-header-bar>
 
@@ -30,9 +30,9 @@
         </table>
         </div>
         <h11>Titulo</h11>
-        <textarea ng-model="title_post" placeholder="Introducir el titulo"></textarea>
+        <textarea ng-model="post.title" placeholder="Introducir el titulo"></textarea>
         <h11>Descripcion</h11>
-        <textarea ng-model="content_post" placeholder="Introducir la descripcion"></textarea>
+        <textarea ng-model="post.content" placeholder="Introducir la descripcion"></textarea>
     </ion-content>
 
 </div>
