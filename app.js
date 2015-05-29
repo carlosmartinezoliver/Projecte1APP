@@ -106,6 +106,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
  	  }).
  	  error(function(data, status, headers, config) {
  		  alert("BADD!");
+ 		  alert(data);
  		  alert(status);
  		    // called asynchronously if an error occurs
  		    // or server returns response with an error status.
