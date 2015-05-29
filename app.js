@@ -500,3 +500,7 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
     });
 
 });
+
+app.controller('NewPostController', function($scope){
+	
+});
