@@ -137,10 +137,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
           
-          var title_post = "";
-          var content_post = "";
-          
-          $scope.newPost = function() {
+          $scope.newPost = function($scope.title_post, $scope.content_post) {
           
         	alert($scope.postId);
           	alert($scope.title_post);
