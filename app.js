@@ -136,9 +136,26 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
-          
-          $scope.newPost = function($scope.title_post, $scope.content_post) {
-          
+
+          }
+          $http.get('http://today.globals.cat/posts/create').
+           success(function(data, status, headers, config) {
+                                      // this callback will be called asynchronously
+                                      // when the response is available
+
+              $scope.postId = data.id;
+              alert($scope.postId);
+           }).error(function(data, status, headers, config) {
+                                      // called asynchronously if an error occurs
+                                      // or server returns response with an error status.
+                                      alert(data);
+                                      $scope.modal.hide();
+
+            });
+        });
+        
+        $scope.newPost = function() {
+            
         	alert($scope.postId);
           	alert($scope.title_post);
           	alert($scope.content_post);
@@ -160,23 +177,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
        		    // called asynchronously if an error occurs
        		    // or server returns response with an error status.
        	  });
-
-          }
-          $http.get('http://today.globals.cat/posts/create').
-           success(function(data, status, headers, config) {
-                                      // this callback will be called asynchronously
-                                      // when the response is available
-
-              $scope.postId = data.id;
-              alert($scope.postId);
-           }).error(function(data, status, headers, config) {
-                                      // called asynchronously if an error occurs
-                                      // or server returns response with an error status.
-                                      alert(data);
-                                      $scope.modal.hide();
-
-            });
-        });
 
         $scope.openOptions = function($img) {
              $ionicActionSheet.show({
