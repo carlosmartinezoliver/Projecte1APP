@@ -92,8 +92,8 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
     getPosts();
     
-    $scope.titlePost = [];
-    $scope.contentPost = [];
+    $scope.titlePost = " ";
+    $scope.contentPost = " ";
     
     $scope.newPost = function() {
         
