@@ -91,6 +91,28 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     $scope.title = "Galeria";
 
     getPosts();
+    
+    $scope.newPost = function($scope.postId, $scope.title_post, $scope.content_post) {
+ 	   
+ 	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+ 			   {title_post: $scope.title_post,
+ 		   		content_post: $scope.content_post}).
+ 	  success(function(data, status, headers, config) {
+ 		  alert("DONE!");
+ 		  alert(data);
+ 		  alert(status);
+ 		    // this callback will be called asynchronously
+ 		    // when the response is available
+ 	  }).
+ 	  error(function(data, status, headers, config) {
+ 		  alert("BADD!");
+ 		  alert(data);
+ 		  alert(status);
+ 		    // called asynchronously if an error occurs
+ 		    // or server returns response with an error status.
+ 	  });
+
+    }
 
     function getPosts(){
     	  var url = "http://today.globals.cat/posts/";
@@ -136,7 +158,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
-          
           $http.get('http://today.globals.cat/posts/create').
            success(function(data, status, headers, config) {
                                       // this callback will be called asynchronously
@@ -479,29 +500,4 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
       console.log('Modal is shown!');
     });
 
-});
-
-app.controller('NewPostController', function($scope){
-	
-	$scope.newPost = function() {
-	 	   
-	 	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
-	 			   {title_post: $scope.title_post,
-	 		   		content_post: $scope.content_post}).
-	 	  success(function(data, status, headers, config) {
-	 		  alert("DONE!");
-	 		  alert(data);
-	 		  alert(status);
-	 		    // this callback will be called asynchronously
-	 		    // when the response is available
-	 	  }).
-	 	  error(function(data, status, headers, config) {
-	 		  alert("BADD!");
-	 		  alert(data);
-	 		  alert(status);
-	 		    // called asynchronously if an error occurs
-	 		    // or server returns response with an error status.
-	 	  });
-
-	    }
 });
