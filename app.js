@@ -92,7 +92,10 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
     getPosts();
     
-    $scope.newPost = function($scope.postId, $scope.title_post, $scope.content_post) {
+    $scope.newPost = function() {
+    	alert($scope.postId);
+    	alert($scope.title_post);
+    	alert($scope.content_post);
  	   
  	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
  			   {title_post: $scope.title_post,
