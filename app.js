@@ -153,7 +153,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
             });
         });
         
-        $scope.newPost = function(post) {
+        $scope.newPost = function() {
             
         	alert($scope.postId);
           	alert(JSON.stringify($scope.title_post));
