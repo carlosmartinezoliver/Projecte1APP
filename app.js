@@ -106,38 +106,37 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     	        console.log("error");
     	  })
     };
-    
-    $scope.newPost = function() {
-        
-    	alert($scope.postId);
-      	alert($scope.title_post);
-      	alert($scope.content_post);
-   	   
-   	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
-   			   {title_post: $scope.title_post,
-   		   		content_post: $scope.content_post}).
-   	  success(function(data, status, headers, config) {
-   		  alert("DONE!");
-   		  alert(data);
-   		  alert(status);
-   		    // this callback will be called asynchronously
-   		    // when the response is available
-   	  }).
-   	  error(function(data, status, headers, config) {
-   		  alert("BADD!");
-   		  alert(data);
-   		  alert(status);
-   		    // called asynchronously if an error occurs
-   		    // or server returns response with an error status.
-   	  });
-
-      }
 
     $ionicModal.fromTemplateUrl('new-post.html', {
           scope: $scope,
           animation: 'slide-in-up'
         }).then(function(modal) {
           $scope.modal = modal;
+          $scope.newPost = function() {
+              
+          	alert($scope.postId);
+            	alert($scope.title_post);
+            	alert($scope.content_post);
+         	   
+         	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+         			   {title_post: $scope.title_post,
+         		   		content_post: $scope.content_post}).
+         	  success(function(data, status, headers, config) {
+         		  alert("DONE!");
+         		  alert(data);
+         		  alert(status);
+         		    // this callback will be called asynchronously
+         		    // when the response is available
+         	  }).
+         	  error(function(data, status, headers, config) {
+         		  alert("BADD!");
+         		  alert(data);
+         		  alert(status);
+         		    // called asynchronously if an error occurs
+         		    // or server returns response with an error status.
+         	  });
+
+            }
         });
 
         $scope.openModal = function() {
