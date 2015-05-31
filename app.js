@@ -148,7 +148,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
         });
-    };
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
@@ -476,7 +475,8 @@ app.controller('NewPostCtrl', function($scope) {
 
            }, function(err) {
              console.err(err);
-           });
+           })
+           
 	 	} else if(index === 1){
 	         alert('Galeria');
 	       	    
@@ -516,7 +516,9 @@ app.controller('NewPostCtrl', function($scope) {
                    
 	       	}, function(err) {
                  console.err(err);
-           });
-       }
-  }
-});
+	       	});
+       	};
+       	}
+       	});
+       	}
+       	});
