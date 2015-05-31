@@ -148,8 +148,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
         });
-    });
-  };
+    };
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
