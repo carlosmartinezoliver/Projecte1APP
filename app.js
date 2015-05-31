@@ -64,6 +64,17 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,$co
       }
 
     })
+    
+  $stateProvider.state('tabs.new-post', {
+      url: '/new-post',
+      views: {
+        'gallery-tab': {
+          templateUrl: 'new-post.html',
+          controller: 'NewPostCtrl'
+        }
+      }
+
+    })
 	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
 
@@ -91,32 +102,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     $scope.title = "Galeria";
 
     getPosts();
-    
-    $scope.newPost = function() {
-        
-    	alert($scope.postId);
-      	alert($scope.titlePost);
-      	alert($scope.contentPost);
-   	   
-   	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
-   			   {title_post: $scope.title_post,
-   		   		content_post: $scope.content_post}).
-   	  success(function(data, status, headers, config) {
-   		  alert("DONE!");
-   		  alert(data);
-   		  alert(status);
-   		    // this callback will be called asynchronously
-   		    // when the response is available
-   	  }).
-   	  error(function(data, status, headers, config) {
-   		  alert("BADD!");
-   		  alert(data);
-   		  alert(status);
-   		    // called asynchronously if an error occurs
-   		    // or server returns response with an error status.
-   	  });
-
-      }
 
     function getPosts(){
     	  var url = "http://today.globals.cat/posts/";
@@ -162,113 +147,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
         });
         $scope.$on('modal.shown', function() {
           console.log('Modal is shown!');
-          
-          $http.get('http://today.globals.cat/posts/create').
-           success(function(data, status, headers, config) {
-                                      // this callback will be called asynchronously
-                                      // when the response is available
-
-              $scope.postId = data.id;
-              alert($scope.postId);
-           }).error(function(data, status, headers, config) {
-                                      // called asynchronously if an error occurs
-                                      // or server returns response with an error status.
-                                      alert(data);
-                                      $scope.modal.hide();
-
-            });
         });
-
-        $scope.openOptions = function($img) {
-             $ionicActionSheet.show({
-                 buttons: [
-                   { text: 'Camara' },
-                   { text: 'Imagen desde galeria' }
-                 ],
-                 titleText: 'Nueva fotografia',
-                 cancelText: 'Cancelar',
-                 buttonClicked: function(index) {
-                if(index === 0){ // Manual Button
-				alert('Camara ' + $img);
-                Camera.getPicture({correctOrientation: true,
-                	quality: 40,
-                    destinationType: navigator.camera.DestinationType.FILE_URI,
-                    encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
-
-                	upload();
-
-                	function upload() {
-                
-                	var options = {
-                			fileKey: $img,
-                            fileName: imageData.substr(imageData.lastIndexOf('/')+1)
-                    };
-                                                             
-                    $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
-                    	alert("SUCCESS: " + JSON.stringify(result.response));
-                    }, function(err) {
-                    	alert("ERROR: " + JSON.stringify(err));
-                    }, function (progress) {
-                    	alert("EN PROCESO!");
-                    });
-                }
-                                   
-
-                if($img === 'principal'){
-                    $scope.imagePrinc = imageData;
-                } else if($img === 'img1'){
-                	$scope.image1 = imageData;
-                } else if($img === 'img2'){
-                    $scope.image2 = imageData;
-                } else if($img === 'img3'){
-                    $scope.image3 = imageData;
-                }
-
-                }, function(err) {
-                  console.err(err);
-                });
-		 	} else if(index === 1){
-		         alert('Galeria');
-		       	    
-		       	 Camera.getPicture({correctOrientation: true,
-		       		quality: 40,
-		       	    destinationType: Camera.DestinationType.FILE_URI,
-		       	    sourceType: Camera.PictureSourceType.PHOTOLIBRARY}).then(function(imageData) {
-
-                     uploadPhoto();
-
-                     function uploadPhoto() {
-                  	  
-                         var options = {
-                                fileKey: $img,
-                                fileName: imageData.substr(imageData.lastIndexOf('/')+1)
-                         };
-                      
-                         $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
-                         	alert("SUCCESS: " + JSON.stringify(result.response));
-                         }, function(err) {
-                         	alert("ERROR: " + JSON.stringify(err));
-                         }, function (progress) {
-                         	alert("EN PROCESO!");
-                         });
-                     }
-                     
-
-                     if($img === 'principal'){
-                    	 $scope.imagePrinc = imageData;
-                     } else if($img === 'img1'){
-                    	 $scope.image1 = imageData;
-                     } else if($img === 'img2'){
-                    	 $scope.image2 = imageData;
-                     } else if($img === 'img3'){
-                    	 $scope.image3 = imageData;
-                     }
-                        
-		       	}, function(err) {
-	                  console.err(err);
-	            });
-            }
-       }
     });
   };
 });
@@ -505,4 +384,140 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
       console.log('Modal is shown!');
     });
 
+});
+
+app.controller('NewPostCtrl', function($scope) {
+	$scope.title = "Nuevo Post";
+	
+	$scope.newPost = function() {
+        
+    	alert($scope.postId);
+      	alert($scope.titlePost);
+      	alert($scope.contentPost);
+   	   
+   	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+   			   {title_post: $scope.title_post,
+   		   		content_post: $scope.content_post}).
+   	  success(function(data, status, headers, config) {
+   		  alert("DONE!");
+   		  alert(data);
+   		  alert(status);
+   		    // this callback will be called asynchronously
+   		    // when the response is available
+   	  }).
+   	  error(function(data, status, headers, config) {
+   		  alert("BADD!");
+   		  alert(data);
+   		  alert(status);
+   		    // called asynchronously if an error occurs
+   		    // or server returns response with an error status.
+   	  });
+
+      }
+	
+	$http.get('http://today.globals.cat/posts/create').
+    success(function(data, status, headers, config) {
+                               // this callback will be called asynchronously
+                               // when the response is available
+
+       $scope.postId = data.id;
+       alert($scope.postId);
+    }).error(function(data, status, headers, config) {
+                               // called asynchronously if an error occurs
+                               // or server returns response with an error status.
+                               alert(data);
+                               $scope.modal.hide();
+
+     });
+	
+	$scope.openOptions = function($img) {
+        $ionicActionSheet.show({
+            buttons: [
+              { text: 'Camara' },
+              { text: 'Imagen desde galeria' }
+            ],
+            titleText: 'Nueva fotografia',
+            cancelText: 'Cancelar',
+            buttonClicked: function(index) {
+           if(index === 0){ // Manual Button
+			alert('Camara ' + $img);
+           Camera.getPicture({correctOrientation: true,
+           	quality: 40,
+               destinationType: navigator.camera.DestinationType.FILE_URI,
+               encodingType: navigator.camera.EncodingType.JPEG}).then(function(imageData) {
+
+           	upload();
+
+           	function upload() {
+           
+           	var options = {
+           			fileKey: $img,
+                       fileName: imageData.substr(imageData.lastIndexOf('/')+1)
+               };
+                                                        
+               $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
+               	alert("SUCCESS: " + JSON.stringify(result.response));
+               }, function(err) {
+               	alert("ERROR: " + JSON.stringify(err));
+               }, function (progress) {
+               	alert("EN PROCESO!");
+               });
+           }
+                              
+
+           if($img === 'principal'){
+               $scope.imagePrinc = imageData;
+           } else if($img === 'img1'){
+           	$scope.image1 = imageData;
+           } else if($img === 'img2'){
+               $scope.image2 = imageData;
+           } else if($img === 'img3'){
+               $scope.image3 = imageData;
+           }
+
+           }, function(err) {
+             console.err(err);
+           });
+	 	} else if(index === 1){
+	         alert('Galeria');
+	       	    
+	       	 Camera.getPicture({correctOrientation: true,
+	       		quality: 40,
+	       	    destinationType: Camera.DestinationType.FILE_URI,
+	       	    sourceType: Camera.PictureSourceType.PHOTOLIBRARY}).then(function(imageData) {
+
+                uploadPhoto();
+
+                function uploadPhoto() {
+             	  
+                    var options = {
+                           fileKey: $img,
+                           fileName: imageData.substr(imageData.lastIndexOf('/')+1)
+                    };
+                 
+                    $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
+                    	alert("SUCCESS: " + JSON.stringify(result.response));
+                    }, function(err) {
+                    	alert("ERROR: " + JSON.stringify(err));
+                    }, function (progress) {
+                    	alert("EN PROCESO!");
+                    });
+                }
+                
+
+                if($img === 'principal'){
+               	 $scope.imagePrinc = imageData;
+                } else if($img === 'img1'){
+               	 $scope.image1 = imageData;
+                } else if($img === 'img2'){
+               	 $scope.image2 = imageData;
+                } else if($img === 'img3'){
+               	 $scope.image3 = imageData;
+                }
+                   
+	       	}, function(err) {
+                 console.err(err);
+           });
+       }
+  }
 });

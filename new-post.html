@@ -1,4 +1,4 @@
-<div class="modal" align-title="center" style="width: 100%; height: 100%;">
+<ion-view title="Gallery">
 
     <ion-header-bar class="bar bar-assertive">
         <div class="buttons">
@@ -10,7 +10,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content has-bouncing="true" ng-init="titlePost='';contentPost=''">
+    <ion-content has-bouncing="true">
 
         <div class="container4">
             <input name="postId" id="{{ postId }}" type="hidden">
@@ -35,4 +35,4 @@
         <textarea ng-model="contentPost" placeholder="Introducir la descripcion" type="text"></textarea>
     </ion-content>
 
-</div>
+</ion-view>
