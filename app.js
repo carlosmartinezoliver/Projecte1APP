@@ -68,13 +68,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,$co
   $stateProvider.state('tabs.new-post', {
       url: '/new-post',
       views: {
-        'gallery-tab': {
-          templateUrl: 'new-post.html',
-          controller: 'NewPostCtrl'
+          'gallery-tab': {
+            templateUrl: 'new-post.html',
+            controller: 'NewPostCtrl'
+          }
         }
-      }
-
-    })
+  	})
+    
 	$compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
 });
 
@@ -96,6 +96,7 @@ app.factory('Camera', ['$q', function($q) {
     }
   }
 }]);
+
 // CONTROLADORES
 
 app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera, $cordovaFileTransfer){
@@ -117,37 +118,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     	        console.log("error");
     	  })
     };
-
-    $ionicModal.fromTemplateUrl('new-post.html', {
-          scope: $scope,
-          animation: 'slide-in-up'
-        }).then(function(modal) {
-          $scope.modal = modal;
-        });
-
-        $scope.openModal = function() {
-          $scope.modal.show();
-        };
-
-        $scope.closeModal = function() {
-          $scope.modal.remove();
-        };
-
-        // Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function() {
-          $scope.modal.remove();
-        });
-        // Execute action on hide modal
-        $scope.$on('modal.hide', function() {
-          // Execute action
-        });
-        // Execute action on remove modal
-        $scope.$on('modal.removed', function() {
-          // Execute action
-        });
-        $scope.$on('modal.shown', function() {
-          console.log('Modal is shown!');
-        });
 });
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
@@ -278,7 +248,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 });
 
 app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate) {
-    $scope.title = "Today"
+    $scope.title = "Article"
 
     function genBrick(i) {
         var height = 300;
@@ -384,7 +354,7 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
 
 });
 
-app.controller('NewPostCtrl', function($scope) {
+app.controller('NewPostCtrl', function($scope, $state, $http) {
 	$scope.title = "Nuevo Post";
 	
 	$scope.newPost = function() {
@@ -411,7 +381,7 @@ app.controller('NewPostCtrl', function($scope) {
    		    // or server returns response with an error status.
    	  });
 
-      }
+    }
 	
 	$http.get('http://today.globals.cat/posts/create').
     success(function(data, status, headers, config) {
@@ -424,7 +394,6 @@ app.controller('NewPostCtrl', function($scope) {
                                // called asynchronously if an error occurs
                                // or server returns response with an error status.
                                alert(data);
-                               $scope.modal.hide();
 
      });
 	
