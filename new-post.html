@@ -20,9 +20,11 @@
         </table>
         </div>
         <h11>Titulo</h11>
-        <textarea ng-model="titlePost" placeholder="Introducir el titulo" type="text"></textarea>
+        <textarea ng-model="titlePost" name="titlePost" placeholder="Introducir el titulo" type="text"></textarea>
         <h11>Descripcion</h11>
-        <textarea ng-model="contentPost" placeholder="Introducir la descripcion" type="text"></textarea>
+        <textarea ng-model="contentPost" name="contentPost" placeholder="Introducir la descripcion" type="text"></textarea>
+        
+        <a class="button button-block button-balanced icon icon-left ion-android-done-all" ng-click="newPost()">Enviar</a>
         
     </ion-content>
 
