@@ -354,7 +354,7 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
 
 });
 
-app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet, Camera) {
+app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet, Camera, $cordovaFileTransfer) {
 	$scope.title = "Nuevo Post";
 	
 	$scope.newPost = function() {
@@ -419,7 +419,7 @@ app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet,
            
            	var options = {
            			fileKey: $img,
-                       fileName: imageData.substr(imageData.lastIndexOf('/')+1)
+                    fileName: imageData.substr(imageData.lastIndexOf('/')+1)
                };
                                                         
                $cordovaFileTransfer.upload("http://today.globals.cat/posts/" + $scope.postId + "/images/upload", imageData, options).then(function(result) {
