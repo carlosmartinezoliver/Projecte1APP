@@ -354,7 +354,7 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
 
 });
 
-app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet) {
+app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet, Camera) {
 	$scope.title = "Nuevo Post";
 	
 	$scope.newPost = function() {
