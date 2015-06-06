@@ -360,21 +360,19 @@ app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet,
 	newId();
 	
 	function newId() {
-		$http.post("http://today.globals.cat/posts/create", {}).
-	   	  success(function(data, status, headers, config) {
-	   		  alert("DONE!");
-	   		  alert(data);
-	   		  alert(status);
-	   		    // this callback will be called asynchronously
-	   		    // when the response is available
-	   	  }).
-	   	  error(function(data, status, headers, config) {
-	   		  alert("BADD!");
-	   		  alert(data);
-	   		  alert(status);
-	   		    // called asynchronously if an error occurs
-	   		    // or server returns response with an error status.
-	   	  });
+    	$http.get('http://today.globals.cat/posts/create').
+        success(function(data, status, headers, config) {
+                                   // this callback will be called asynchronously
+                                   // when the response is available
+
+           $scope.postId = data.id;
+           alert($scope.postId);
+        }).error(function(data, status, headers, config) {
+                                   // called asynchronously if an error occurs
+                                   // or server returns response with an error status.
+                                   alert(data);
+
+        });
     }
 	
 	$scope.newPost = function() {
