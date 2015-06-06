@@ -122,22 +122,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
-    
-    $scope.newId = function() {
-    	$http.get('http://today.globals.cat/posts/create').
-        success(function(data, status, headers, config) {
-                                   // this callback will be called asynchronously
-                                   // when the response is available
-
-           $scope.postId = data.id;
-           alert($scope.postId);
-        }).error(function(data, status, headers, config) {
-                                   // called asynchronously if an error occurs
-                                   // or server returns response with an error status.
-                                   alert(data);
-
-        });
-    }
 
     function getImage() {
 
@@ -372,6 +356,24 @@ app.controller('ProfileCtrl', function($scope, $ionicModal) {
 
 app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet, Camera, $cordovaFileTransfer) {
 	$scope.title = "Nuevo Post";
+	
+	newId();
+	
+	function newId() {
+    	$http.get('http://today.globals.cat/posts/create').
+        success(function(data, status, headers, config) {
+                                   // this callback will be called asynchronously
+                                   // when the response is available
+
+           $scope.postId = data.id;
+           alert($scope.postId);
+        }).error(function(data, status, headers, config) {
+                                   // called asynchronously if an error occurs
+                                   // or server returns response with an error status.
+                                   alert(data);
+
+        });
+    }
 	
 	$scope.newPost = function() {
         
