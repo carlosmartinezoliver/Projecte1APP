@@ -364,8 +364,8 @@ app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet,
       	alert($scope.contentPost);
    	   
    	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
-   			   {title_post: $scope.title_post,
-   		   		content_post: $scope.content_post}).
+   			   {title_post: $scope.titlePost,
+   		   		content_post: $scope.contentPost}).
    	  success(function(data, status, headers, config) {
    		  alert("DONE!");
    		  alert(data);
