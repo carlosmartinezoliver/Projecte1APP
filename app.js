@@ -122,6 +122,22 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
+    
+    $scope.newId = function() {
+    	$http.get('http://today.globals.cat/posts/create').
+        success(function(data, status, headers, config) {
+                                   // this callback will be called asynchronously
+                                   // when the response is available
+
+           $scope.postId = data.id;
+           alert($scope.postId);
+        }).error(function(data, status, headers, config) {
+                                   // called asynchronously if an error occurs
+                                   // or server returns response with an error status.
+                                   alert(data);
+
+        });
+    }
 
     function getImage() {
 
@@ -363,7 +379,7 @@ app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet,
       	alert($scope.titlePost);
       	alert($scope.contentPost);
    	   
-   	   $http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
+      	$http.post("http://today.globals.cat/posts/" + $scope.postId + "/data/upload", 
    			   {title_post: $scope.titlePost,
    		   		content_post: $scope.contentPost}).
    	  success(function(data, status, headers, config) {
@@ -382,20 +398,6 @@ app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet,
    	  });
 
     }
-	
-	$http.get('http://today.globals.cat/posts/create').
-    success(function(data, status, headers, config) {
-                               // this callback will be called asynchronously
-                               // when the response is available
-
-       $scope.postId = data.id;
-       alert($scope.postId);
-    }).error(function(data, status, headers, config) {
-                               // called asynchronously if an error occurs
-                               // or server returns response with an error status.
-                               alert(data);
-
-     });
 	
 	$scope.openOptions = function($img) {
         $ionicActionSheet.show({
