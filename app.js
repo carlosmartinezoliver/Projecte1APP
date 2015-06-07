@@ -360,7 +360,7 @@ app.controller('NewPostCtrl', function($scope, $state, $http, $ionicActionSheet,
 	newId();
 	
 	function newId() {
-    	$http.post('http://today.globals.cat/posts/create').
+    	$http.get('http://today.globals.cat/posts/create').
         success(function(data, status, headers, config) {
                                    // this callback will be called asynchronously
                                    // when the response is available
