@@ -122,7 +122,29 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
 
 app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
     $scope.title = "Today";
+    
+    getPosts();
+    
+    function getPosts() {
+    	$http.get('http://today.globals.cat/posts').
+        success(function(data, status, headers, config) {
+                                   // this callback will be called asynchronously
+                                   // when the response is available
 
+           $scope.postId = data.id;
+           $scope.postTitle = data.title;
+           $scope.postContent = data.content;
+           alert(data.id);
+           alert(data.title);
+           alert(data.content);
+        }).error(function(data, status, headers, config) {
+                                   // called asynchronously if an error occurs
+                                   // or server returns response with an error status.
+                                   alert(data);
+
+        });
+    }
+    
     function getImage() {
 
         navigator.camera.getPicture(onSuccess, onFail, {
