@@ -103,27 +103,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
     $scope.title = "Galeria";
 
     getPosts();
-
-    function getPosts(){
-    	  var url = "http://today.globals.cat/posts/";
-
-    	  $http.get(url).
-    	     success(function(posts) {
-                console.log("Recogiendo posts...");
-                console.log(posts);
-
-                //$scope.allId = i;
-             }).
-    	    error(function(data_todo) {
-    	        console.log("error");
-    	  })
-    };
-});
-
-app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
-    $scope.title = "Today";
-    
-    getPosts();
     
     function getPosts() {
     	$http.get('http://today.globals.cat/posts').
@@ -132,16 +111,18 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
                                    // when the response is available
 
            $scope.data = data;
-           alert(data.id);
-           alert(data.title);
-           alert(data.content);
+           alert(data);
         }).error(function(data, status, headers, config) {
                                    // called asynchronously if an error occurs
                                    // or server returns response with an error status.
                                    alert(data);
 
         });
-    }
+    };
+});
+
+app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $http, $timeout, Camera) {
+    $scope.title = "Today";
     
     function getImage() {
 
