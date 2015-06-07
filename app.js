@@ -255,9 +255,9 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
     getPost();
     
     function getPost() {
-    	var id = $routeParams.id;
     	
-    	$http.get('http://today.globals.cat/posts/' + id).
+    	alert($routeParams.id);
+    	$http.get('http://today.globals.cat/posts/' + $routeParams.id).
         success(function(data, status, headers, config) {
                                    // this callback will be called asynchronously
                                    // when the response is available
