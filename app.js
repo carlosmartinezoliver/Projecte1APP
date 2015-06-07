@@ -131,9 +131,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
                                    // this callback will be called asynchronously
                                    // when the response is available
 
-           $scope.postId = data.id;
-           $scope.postTitle = data.title;
-           $scope.postContent = data.content;
+           $scope.data = data;
            alert(data.id);
            alert(data.title);
            alert(data.content);
