@@ -14,16 +14,16 @@
 
     <ion-content has-bouncing="true">
 
-      <div ng-repeat="data in get_data" class="list card">
-      <a href="#/tabs/article/{{ get_data.id }}">
+      <div ng-repeat="data in get-data" class="list card">
+      <a href="#/tabs/article/{{ data.id }}">
         <div class="item item-image">
           <div class="card-image1"></div>
         </div>
 
         <div class="ellipsis"><div>
-          <h10>{{ get_data.id }}</h10>
-          <h10>{{ get_data.title }}</h10>
-          <p class="card-text">{{ get_data.content }}</p>
+          <h10>{{ data.id }}</h10>
+          <h10>{{ data.title }}</h10>
+          <p class="card-text">{{ data.content }}</p>
         </div></div>
       </a>
       </div>
