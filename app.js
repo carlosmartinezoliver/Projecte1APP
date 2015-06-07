@@ -55,7 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,$co
     })
 
   $stateProvider.state('tabs.article', {
-      url: '/article',
+      url: '/article/:id',
       views: {
         'gallery-tab': {
           templateUrl: 'article.html',
@@ -248,9 +248,30 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
 });
 
-app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate) {
+app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $http, $routeParams) {
     $scope.title = "Article"
+    
+    	
+    getPost();
+    
+    function getPost() {
+    	var id = $routeParams.id;
+    	
+    	$http.get('http://today.globals.cat/posts/' + id).
+        success(function(data, status, headers, config) {
+                                   // this callback will be called asynchronously
+                                   // when the response is available
 
+           $scope.data = data;
+           alert(data);
+        }).error(function(data, status, headers, config) {
+                                   // called asynchronously if an error occurs
+                                   // or server returns response with an error status.
+                                   alert(data);
+
+        });
+    };
+    
     function genBrick(i) {
         var height = 300;
         var id = ~~(Math.random() * 10000);
