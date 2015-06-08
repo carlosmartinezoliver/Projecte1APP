@@ -264,6 +264,9 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
 
            $scope.data = data;
            alert(data);
+           alert(data.id);
+           alert(data.title);
+           alert(data.content);
         }).error(function(data, status, headers, config) {
                                    // called asynchronously if an error occurs
                                    // or server returns response with an error status.
