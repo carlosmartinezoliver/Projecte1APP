@@ -264,7 +264,8 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
 
            $scope.data = data;
            alert(angular.toJson(data));
-           alert($scope.data.id);
+           var datos = data.title;
+           alert(datos);
            alert(data.title);
            alert(data.content);
         }).error(function(data, status, headers, config) {
