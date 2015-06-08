@@ -263,7 +263,7 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
                                    // when the response is available
 
            $scope.data = data;
-           alert(data);
+           alert(angular.toJson(data));
            alert(data.id);
            alert(data.title);
            alert(data.content);
