@@ -262,9 +262,9 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
                                    // this callback will be called asynchronously
                                    // when the response is available
 
-           //$scope.data = data;
+           $scope.data = data;
            alert(angular.toJson(data));
-           alert(data.id);
+           alert($scope.data.id);
            alert(data.title);
            alert(data.content);
         }).error(function(data, status, headers, config) {
