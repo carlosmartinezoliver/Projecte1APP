@@ -55,7 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,$co
     })
 
   $stateProvider.state('tabs.article', {
-      url: '/article/{id}',
+      url: '/article/:id',
       views: {
         'gallery-tab': {
           templateUrl: 'article.html',
