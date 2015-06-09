@@ -248,7 +248,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
 });
 
-app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $http, $routeParams) {
+app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $http, $routeParams, $timeout) {
     $scope.title = "Article"
     
     	
