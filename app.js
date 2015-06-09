@@ -111,7 +111,6 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    // when the response is available
 
            $scope.dataGet = data;
-           alert(data);
         }).error(function(data, status, headers, config) {
                                    // called asynchronously if an error occurs
                                    // or server returns response with an error status.
@@ -257,13 +256,10 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
     function getPost() {
     	
     	alert($routeParams.id);
-    	$timeout(function(){
 	    	$http.get('http://today.globals.cat/posts/14').
 	        success(function(data, status, headers, config) {
 	                                   // this callback will be called asynchronously
 	                                   // when the response is available
-	
-	           $scope.data = data;
 	           alert(angular.toJson(data));
 	           alert(data.title);
 	           alert(data.content);
@@ -273,7 +269,6 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
 	                                   alert(data);
 	
 	        });
-    	}, 800);
     };
     
     function genBrick(i) {
