@@ -105,7 +105,7 @@ app.controller('GalleryCtrl', function($scope, $state, $http, $ionicModal, $ioni
     getPosts();
     
     $scope.goPost = function(id){
-    	alert(id);
+    	alert("ID en goPost: " + id);
     	$state.go('tabs.article', { id: id });
     }
     
@@ -261,7 +261,7 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
     
     function getPost() {
     	
-    		alert($routeParams.id);
+    		alert("ID en getPost: " + $routeParams.id);
 	    	$http.get('http://today.globals.cat/posts/14').
 	        success(function(data, status, headers, config) {
 	                                   // this callback will be called asynchronously
