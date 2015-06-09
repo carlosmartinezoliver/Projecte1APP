@@ -253,7 +253,7 @@ app.controller('TodayCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate
 
 });
 
-app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $http, $routeParams, $timeout) {
+app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, $http, $stateParams, $timeout) {
     $scope.title = "Article"
     
     	
@@ -261,7 +261,7 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
     
     function getPost() {
     	
-    		alert("ID en getPost: " + $routeParams.id);
+    		alert("ID en getPost: " + $stateParams.id);
 	    	$http.get('http://today.globals.cat/posts/14').
 	        success(function(data, status, headers, config) {
 	                                   // this callback will be called asynchronously
