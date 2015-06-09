@@ -15,7 +15,7 @@
     <ion-content has-bouncing="true">
 
       <div ng-repeat="data in dataGet" class="list card">
-      <a ng-click="goPost()">
+      <a ng-click="goPost({{ data.id }})">
         <div class="item item-image">
           <div class="card-image1"></div>
         </div>
