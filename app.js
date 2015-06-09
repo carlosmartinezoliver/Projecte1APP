@@ -105,6 +105,7 @@ app.controller('GalleryCtrl', function($scope, $state, $http, $ionicModal, $ioni
     getPosts();
     
     $scope.goPost = function(id){
+    	alert(id);
     	$state.go('tabs.article', { id: id });
     }
     
