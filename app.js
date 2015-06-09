@@ -111,6 +111,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    // when the response is available
 
            $scope.dataGet = data;
+           $scope.id = data.id;
         }).error(function(data, status, headers, config) {
                                    // called asynchronously if an error occurs
                                    // or server returns response with an error status.
