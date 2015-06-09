@@ -110,7 +110,7 @@ app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionS
                                    // this callback will be called asynchronously
                                    // when the response is available
 
-           $scope.data = data;
+           $scope.dataGet = data;
            alert(data);
         }).error(function(data, status, headers, config) {
                                    // called asynchronously if an error occurs
@@ -257,23 +257,23 @@ app.controller('ArticleCtrl', function($scope, $ionicModal, $ionicSlideBoxDelega
     function getPost() {
     	
     	alert($routeParams.id);
-    	$http.get('http://today.globals.cat/posts/14').
-        success(function(data, status, headers, config) {
-                                   // this callback will be called asynchronously
-                                   // when the response is available
-
-           $scope.data = data;
-           alert(angular.toJson(data));
-           var datos = data.title;
-           alert(datos);
-           alert(data.title);
-           alert(data.content);
-        }).error(function(data, status, headers, config) {
-                                   // called asynchronously if an error occurs
-                                   // or server returns response with an error status.
-                                   alert(data);
-
-        });
+    	$timeout(function(){
+	    	$http.get('http://today.globals.cat/posts/14').
+	        success(function(data, status, headers, config) {
+	                                   // this callback will be called asynchronously
+	                                   // when the response is available
+	
+	           $scope.data = data;
+	           alert(angular.toJson(data));
+	           alert(data.title);
+	           alert(data.content);
+	        }).error(function(data, status, headers, config) {
+	                                   // called asynchronously if an error occurs
+	                                   // or server returns response with an error status.
+	                                   alert(data);
+	
+	        });
+    	}, 800);
     };
     
     function genBrick(i) {
