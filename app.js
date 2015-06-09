@@ -55,8 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,$co
     })
 
   $stateProvider.state('tabs.article', {
-	  params: ['id'],
-      url: '/article',
+      url: '/article/:id',
       views: {
         'gallery-tab': {
           templateUrl: 'article.html',
@@ -100,10 +99,14 @@ app.factory('Camera', ['$q', function($q) {
 
 // CONTROLADORES
 
-app.controller('GalleryCtrl', function($scope, $http, $ionicModal, $ionicActionSheet, Camera, $cordovaFileTransfer){
+app.controller('GalleryCtrl', function($scope, $state, $http, $ionicModal, $ionicActionSheet, Camera, $cordovaFileTransfer){
     $scope.title = "Galeria";
 
     getPosts();
+    
+    $scope.goPost = function(){
+    	$state.go('tabs.article', { id: '14' });
+    }
     
     function getPosts() {
     	$http.get('http://today.globals.cat/posts').
